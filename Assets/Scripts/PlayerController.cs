@@ -29,7 +29,8 @@ public class PlayerController : MonoBehaviour {
 
         hinput = Input.GetAxisRaw("Horizontal");
         vinput = Input.GetAxisRaw("Vertical");
-
+		print (hinput);
+		print (vinput);
         direction = new Vector3(hinput, 0f, vinput).normalized;
 
 /*        if (direction != Vector3.zero)
