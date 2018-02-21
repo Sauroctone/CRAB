@@ -3,36 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FlowMovement : MonoBehaviour {
-	public FlowManager currentFlow;
-	bool inFlow;
+	[Header("Movement")]
 
+	FlowInstance currentFlow;
 	public Transform[] waypoints; 
-	float percentPerSecond = 0.01f;
+	float speed = 0.01f;
 	float currentPathPercent = 0.0f;
 
+	[Header("Direction Update")]
+
 	Vector3 previousPosition;
-	Vector3 direction;
+	Vector3 forwardDirection;
+	Vector3 upDirection;
 
 	void Start()
 	{
+		//Init for direction update
 		previousPosition = transform.position;
 	}
 
 	void FixedUpdate()
 	{
-		if (currentFlow != null) {
-			if (!inFlow) 
+		if (currentFlow != null && PlayerController.inFlow) 
+		{
+			if (currentPathPercent <= 1f) 
 			{
-				inFlow = true;
-			}
+				//Increment progress on the path & update position thanks to the path
+				currentPathPercent += speed; 						
+				iTween.PutOnPath (gameObject, waypoints, currentPathPercent); 
 
-			if (currentPathPercent <= 1f) {
-				currentPathPercent += percentPerSecond * Time.deltaTime;
-				iTween.PutOnPath (gameObject, waypoints, currentPathPercent);
-				direction = transform.position - previousPosition;
+				//Update orientation from direction
+				forwardDirection = transform.position - previousPosition;				
 				previousPosition = transform.position;
-				transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (direction), 0.01f);
-			} else if (currentFlow.loops && currentPathPercent >= 1) {
+				transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (forwardDirection, upDirection), 0.01f);
+			} 
+
+			//Loop back at the begining of the path if needed
+			else if (currentFlow.doesLoop && currentPathPercent >= 1) 			
+			{
 				currentPathPercent = currentPathPercent-1f;
 			}
 		}
@@ -43,10 +51,13 @@ public class FlowMovement : MonoBehaviour {
 		iTween.DrawPath (waypoints);
 	}
 		
-	public void InitFlow(FlowManager detectedFlow)
+	public void InitFlow(FlowInstance detectedFlow, float percentage, Vector3 upVector)
 	{
+		//Get values from the current flow
 		currentFlow = detectedFlow;
-		percentPerSecond = currentFlow.speed;
+		speed = currentFlow.speed;
+		currentPathPercent = percentage;
 		waypoints = currentFlow.waypoints;
+		upDirection = upVector;
 	}
 }

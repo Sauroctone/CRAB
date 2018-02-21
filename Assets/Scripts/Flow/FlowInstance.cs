@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlowManager : MonoBehaviour {
+public class FlowInstance : MonoBehaviour {
 	public Transform[] waypoints;
-	public bool loops;
+	public bool doesLoop;
 	public float speed;
+	public float radius;
 
 	// Use this for initialization
 	void Start () 
