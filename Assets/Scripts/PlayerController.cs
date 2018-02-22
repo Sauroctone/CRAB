@@ -57,7 +57,6 @@ public class PlayerController : MonoBehaviour {
 				Debug.DrawRay (hit.point, hit.normal, Color.blue);
 
 				transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (transform.forward, hit.normal), rotLerp);
-				//  print(transform.rotation);
 			}
 		}
     }

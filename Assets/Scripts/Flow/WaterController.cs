@@ -16,6 +16,9 @@ public class WaterController : MonoBehaviour {
 	public float centerForce;
 	float amplitude;
 
+	[Header("Transition")]
+	public bool exiting;
+
 	[Header("References")]
 
 	FlowInterface flowInterface; 
@@ -38,10 +41,17 @@ public class WaterController : MonoBehaviour {
 		if ((Input.GetAxisRaw ("LeftClaw") > 0.4f || Input.GetAxisRaw ("RightClaw") > 0.4f) && flowInterface.GetExitPoint() != null)
 		{
 			float dirNum = AngleDir (transform.forward, flowInterface.GetExitPoint ().position - transform.position, transform.up);
-			if (dirNum  < 0 && Input.GetAxisRaw ("LeftClaw") > 0.4f) {
+			if (dirNum  < 0 && Input.GetAxisRaw ("LeftClaw") > 0.4f && !exiting) 
+			{
 				print ("left");
-			} else if (dirNum > 0 && Input.GetAxisRaw ("RightClaw") > 0.4f){
+				StartCoroutine (flowInterface.ExitFlow ());
+				exiting = true;
+			} 
+			else if (dirNum > 0 && Input.GetAxisRaw ("RightClaw") > 0.4f && !exiting)
+			{
 				print ("right");
+				StartCoroutine (flowInterface.ExitFlow ());
+				exiting = true;
 			}
 		}
 
@@ -81,6 +91,13 @@ public class WaterController : MonoBehaviour {
 		amplitude = currentFlow.radius;
 	}
 
+	public void ResetFlow()
+	{
+		amplitude = 0;
+		exiting = false;
+	}
+
+	//Returns -1 if target is left and 1 if right (0 if straight forward or backward)
 	float AngleDir(Vector3 fwd, Vector3 targetDir, Vector3 up) 
 	{
 		Vector3 perp = Vector3.Cross(fwd, targetDir);
