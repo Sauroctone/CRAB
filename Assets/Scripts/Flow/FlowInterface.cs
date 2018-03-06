@@ -8,6 +8,7 @@ public class FlowInterface : MonoBehaviour {
 
 	FlowMovement flowMovement;
 	WaterController waterControl;
+	PlayerController playerController;
 
 	[Header("Detectors")]
 
@@ -36,6 +37,7 @@ public class FlowInterface : MonoBehaviour {
 	{
 		flowMovement = GetComponentInParent<FlowMovement> ();
 		waterControl = GetComponent<WaterController> ();
+		playerController = GetComponent<PlayerController> ();
 	}
 
 	/*void Update()
@@ -119,6 +121,7 @@ public class FlowInterface : MonoBehaviour {
 		if (CheckClosestWaypoint() != null) 
 		{
 			FlowMode(true);
+
 			//Get the detected flow & position on the path
 			FlowInstance targetFlow = CheckClosestWaypoint().GetComponentInParent<FlowInstance> ();
 			float targetPercentage = CheckPathPercentage (targetFlow);
@@ -128,6 +131,9 @@ public class FlowInterface : MonoBehaviour {
 
 			//Keep up for flow movement
 			Vector3 upDirection = transform.up;
+
+			//Resets local rotation of the mesh inside the player
+			StartCoroutine (playerController.ResetMeshRotation ());
 
 			//Lerp towards target point on the path
 			for (float i = 0; i < 1; i+=0.01f)
@@ -176,9 +182,6 @@ public class FlowInterface : MonoBehaviour {
 			targetPosition = hit.point;
 			targetRotation = Quaternion.LookRotation (transform.forward, hit.normal);
 		}
-
-		print (originRotation);
-		print (targetRotation);
 
 		PlayerController.inFlow = false;
 		//Lerp & Slerp

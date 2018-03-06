@@ -393,7 +393,8 @@ MonoBehaviour:
   - {fileID: 4372604451921238}
   - {fileID: 4619773804148104}
   - {fileID: 4880863715836654}
-  doesLoop: 0
+  - {fileID: 4039422584199106}
+  doesLoop: 1
   speed: 0.001
   radius: 2.2
 --- !u!135 &135023152950437422
