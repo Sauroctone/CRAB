@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
     Vector3 movement;
 	public static bool inFlow = false;
 	Vector3 lastDirection;
+	Vector3 lastPosition;
 	public Transform meshObject;
 
     [Header("Raycast and rotation")]
@@ -27,6 +28,11 @@ public class PlayerController : MonoBehaviour {
 
     public Rigidbody rb;
 
+	void Start()
+	{
+		lastPosition = transform.position;
+	}
+
 	void Update ()
     {
         //Calculate the direction vector based on inputs
@@ -37,9 +43,6 @@ public class PlayerController : MonoBehaviour {
         direction = new Vector3(hinput, 0f, vinput).normalized;
 
        	movement = direction * speed;
-
-
-
     }
 
     void FixedUpdate()
@@ -51,14 +54,18 @@ public class PlayerController : MonoBehaviour {
 			rb.velocity = Camera.main.transform.TransformDirection (movement);
 
 			//Get and paply new rotation of the player depending of the surface
-			Quaternion newRotation = GetRotationFromNormal (GetNormalAverage ());
+			Quaternion newRotation = GetRotationFromNormal (GetNormalAverage (), transform.forward);
 			rb.MoveRotation (Quaternion.Slerp(transform.rotation,newRotation,rotLerp));
+			Vector3 crabDirection = transform.InverseTransformDirection (rb.velocity);
+			crabDirection = new Vector3 (crabDirection.x, 0f, crabDirection.z);
+			//trueVelocity = newpos-lastpos
+			//Lookroatation with true velocity ?
 
-			//Change mesh orientation with movement
+			//Change mesh orientation with movement / NOT WORKING !!!!!! è_é
 			if (direction.magnitude > 0.2f) 
 			{
-				meshObject.localRotation = Quaternion.Slerp(meshObject.localRotation, Quaternion.LookRotation (movement, Vector3.up), 0.1f);
-				lastDirection = movement;
+				meshObject.localRotation = Quaternion.Slerp(meshObject.localRotation, Quaternion.LookRotation (crabDirection, Vector3.up), 0.1f);
+				lastDirection = crabDirection;
 			} 
 			else if (lastDirection != Vector3.zero) //Keeps last orientation if the player is not moving
 			{
@@ -70,6 +77,7 @@ public class PlayerController : MonoBehaviour {
 			{
 				rb.velocity += -transform.up;
 			}
+			lastPosition = transform.position;
 		}
     }
 
@@ -94,10 +102,10 @@ public class PlayerController : MonoBehaviour {
 	//////////////Functions for orienting the player depending of the surface 
 
 	//Get new rotation from the surface normal
-	Quaternion GetRotationFromNormal(Vector3 normal)
+	Quaternion GetRotationFromNormal(Vector3 normal, Vector3 forward)
 	{
 		//cross product to get the right forward 
-		Vector3 left = Vector3.Cross (transform.forward,normal);
+		Vector3 left = Vector3.Cross (forward,normal);
 		Vector3 newForward = Vector3.Cross (normal,left);
 
 		//new rotation thanks to normal and forward
@@ -115,18 +123,22 @@ public class PlayerController : MonoBehaviour {
 		Ray bRay = new Ray (meshObject.position - meshObject.forward*0.1f, -transform.up);
 		Ray lRay = new Ray (meshObject.position + Vector3.Cross (meshObject.forward, transform.up)*0.3f, -transform.up);
 		Ray rRay = new Ray (meshObject.position - Vector3.Cross (meshObject.forward, transform.up)*0.3f, -transform.up);
+		Ray ffRay = new Ray (meshObject.position + meshObject.forward*0.1f, (-transform.up+meshObject.forward).normalized);
+		Ray fbRay = new Ray (meshObject.position + meshObject.forward*0.1f - meshObject.up*0.3f, (-transform.up*2f-meshObject.forward).normalized);
 
 		rays.Add (fRay);
 		rays.Add (bRay);
 		rays.Add (lRay);
 		rays.Add (rRay);
+		rays.Add (ffRay);
+		rays.Add (fbRay);
 
 		Vector3 averageNormal = new Vector3 (0,0,0);
 
 		//Adding each raycast's normal to the average
 		for (int i = 0; i < rays.Count; i++) 
 		{
-			if (Physics.Raycast (rays[i], out hit, 1f)) 
+			if (Physics.Raycast (rays[i], out hit, 0.5f)) 
 			{
 				Debug.DrawRay (rays[i].origin, rays[i].direction, Color.red);
 				averageNormal += hit.normal;
