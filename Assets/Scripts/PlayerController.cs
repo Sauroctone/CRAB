@@ -51,7 +51,12 @@ public class PlayerController : MonoBehaviour {
 		if (!inFlow) 
 		{
 			//Set velocity based on movement vector
-			rb.velocity = Camera.main.transform.TransformDirection (movement);
+			Vector3 velocityVector = Camera.main.transform.TransformDirection (movement);
+			Vector3 currentNormal = GetNormalAverage ();
+			Vector3 left = Vector3.Cross (velocityVector,currentNormal);
+			velocityVector = Vector3.Cross (currentNormal,left);
+
+			rb.velocity = velocityVector;
 
 			//Get and paply new rotation of the player depending of the surface
 			Quaternion newRotation = GetRotationFromNormal (GetNormalAverage (), transform.forward);
@@ -94,7 +99,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (other.gameObject.tag == "Wall" && onFloor) 
 		{
-			onFloor = true;
+			onFloor = false;
 		}
 	}
 
