@@ -120,8 +120,7 @@ public class FlowInterface : MonoBehaviour {
 	{
 		if (CheckClosestWaypoint() != null) 
 		{
-			FlowMode(true);
-
+			PlayerController.controlsAble = false;
 			//Get the detected flow & position on the path
 			FlowInstance targetFlow = CheckClosestWaypoint().GetComponentInParent<FlowInstance> ();
 			float targetPercentage = CheckPathPercentage (targetFlow);
@@ -142,6 +141,8 @@ public class FlowInterface : MonoBehaviour {
 				yield return null;
 			}
 
+			transform.position = iTween.PointOnPath(targetFlow.waypoints, targetPercentage);
+
 			//Create flow parent
 			GameObject flowParent = new GameObject("FlowParent");
 			flowParent.transform.position = transform.position;
@@ -156,8 +157,9 @@ public class FlowInterface : MonoBehaviour {
 			currentFlow = targetFlow;
 
 			//Switch to inFlow mode
-
+			FlowMode(true);
 			PlayerController.inFlow = true;
+			PlayerController.controlsAble = true;
 		}
 	}
 

@@ -62,7 +62,7 @@ public class WaterController : MonoBehaviour {
 
 	void FixedUpdate () 
 	{
-		if (PlayerController.inFlow) 
+		if (PlayerController.inFlow && PlayerController.controlsAble) 
 		{
 			//Swim movement from the player
 			hOffset += swimForce * hinput;

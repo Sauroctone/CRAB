@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
     Vector3 direction;
     Vector3 movement;
 	public static bool inFlow = false;
+	public static bool controlsAble = true;
 	Vector3 lastDirection;
 	Vector3 lastPosition;
 	public Transform meshObject;
@@ -36,13 +37,15 @@ public class PlayerController : MonoBehaviour {
 	void Update ()
     {
         //Calculate the direction vector based on inputs
+		if (controlsAble) 
+		{
+			hinput = Input.GetAxisRaw ("Horizontal");
+			vinput = Input.GetAxisRaw ("Vertical");
 
-        hinput = Input.GetAxisRaw("Horizontal");
-        vinput = Input.GetAxisRaw("Vertical");
+			direction = new Vector3 (hinput, 0f, vinput).normalized;
 
-        direction = new Vector3(hinput, 0f, vinput).normalized;
-
-       	movement = direction * speed;
+			movement = direction * speed;
+		}
     }
 
     void FixedUpdate()
@@ -143,7 +146,7 @@ public class PlayerController : MonoBehaviour {
 		//Adding each raycast's normal to the average
 		for (int i = 0; i < rays.Count; i++) 
 		{
-			if (Physics.Raycast (rays[i], out hit, 0.5f)) 
+			if (Physics.Raycast (rays[i], out hit, 1f)) 
 			{
 				Debug.DrawRay (rays[i].origin, rays[i].direction, Color.red);
 				averageNormal += hit.normal;
