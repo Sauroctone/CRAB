@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour {
 	public static bool inFlow = false;
 	public static bool controlsAble = true;
 	Vector3 lastDirection;
-	Vector3 lastPosition;
 	public Transform meshObject;
 
     [Header("Raycast and rotation")]
@@ -31,7 +30,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Start()
 	{
-		lastPosition = transform.position;
+		
 	}
 
 	void Update ()
@@ -51,7 +50,7 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate()
     {
 		
-		if (!inFlow) 
+		if (!inFlow && PlayerController.controlsAble) 
 		{
 			//Set velocity based on movement vector
 			Vector3 velocityVector = Camera.main.transform.TransformDirection (movement);
@@ -66,10 +65,8 @@ public class PlayerController : MonoBehaviour {
 			rb.MoveRotation (Quaternion.Slerp(transform.rotation,newRotation,rotLerp));
 			Vector3 crabDirection = transform.InverseTransformDirection (rb.velocity);
 			crabDirection = new Vector3 (crabDirection.x, 0f, crabDirection.z);
-			//trueVelocity = newpos-lastpos
-			//Lookroatation with true velocity ?
 
-			//Change mesh orientation with movement / NOT WORKING !!!!!! è_é
+			//Change mesh orientation with movement 
 			if (direction.magnitude > 0.2f) 
 			{
 				meshObject.localRotation = Quaternion.Slerp(meshObject.localRotation, Quaternion.LookRotation (crabDirection, Vector3.up), 0.1f);
@@ -85,7 +82,6 @@ public class PlayerController : MonoBehaviour {
 			{
 				rb.velocity += -transform.up;
 			}
-			lastPosition = transform.position;
 		}
     }
 
@@ -131,8 +127,8 @@ public class PlayerController : MonoBehaviour {
 		Ray bRay = new Ray (meshObject.position - meshObject.forward*0.1f, -transform.up);
 		Ray lRay = new Ray (meshObject.position + Vector3.Cross (meshObject.forward, transform.up)*0.3f, -transform.up);
 		Ray rRay = new Ray (meshObject.position - Vector3.Cross (meshObject.forward, transform.up)*0.3f, -transform.up);
-		Ray ffRay = new Ray (meshObject.position + meshObject.forward*0.1f, (-transform.up+meshObject.forward).normalized);
-		Ray fbRay = new Ray (meshObject.position + meshObject.forward*0.1f - meshObject.up*0.3f, (-transform.up*2f-meshObject.forward).normalized);
+		Ray ffRay = new Ray (meshObject.position + meshObject.forward*0.1f, (/*-transform.up+*/meshObject.forward).normalized*0.1f);
+		Ray fbRay = new Ray (meshObject.position + meshObject.forward*0.05f - meshObject.up*0.2f, (-transform.up*2f-meshObject.forward).normalized);
 
 		rays.Add (fRay);
 		rays.Add (bRay);
@@ -146,7 +142,7 @@ public class PlayerController : MonoBehaviour {
 		//Adding each raycast's normal to the average
 		for (int i = 0; i < rays.Count; i++) 
 		{
-			if (Physics.Raycast (rays[i], out hit, 1f)) 
+			if (Physics.Raycast (rays[i], out hit, 1f, layer)) 
 			{
 				Debug.DrawRay (rays[i].origin, rays[i].direction, Color.red);
 				averageNormal += hit.normal;

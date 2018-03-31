@@ -35,7 +35,7 @@ public class FlowMovement : MonoBehaviour {
 				//Update orientation from direction
 				forwardDirection = transform.position - previousPosition;				
 				previousPosition = transform.position;
-				transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (forwardDirection, upDirection), 0.01f);
+				transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (forwardDirection, upDirection), 0.1f);
 			} 
 
 			//Loop back at the begining of the path if needed

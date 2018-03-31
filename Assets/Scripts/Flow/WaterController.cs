@@ -11,6 +11,13 @@ public class WaterController : MonoBehaviour {
 	float hinput;
 	float vinput;
 
+	[Header("Claws")]
+	bool leftClaw;
+	bool rightClaw;
+	bool leftPressed;
+	bool rightPressed;
+	public float inputWindow;
+
 	[Header("Flow parameter")]
 
 	public float centerForce;
@@ -38,16 +45,39 @@ public class WaterController : MonoBehaviour {
 		}
 
 		//Check claws
-		if ((Input.GetAxisRaw ("LeftClaw") > 0.4f || Input.GetAxisRaw ("RightClaw") > 0.4f) && flowInterface.GetExitPoint() != null)
+		if (Input.GetAxisRaw ("LeftClaw") > 0.4f && !leftClaw && !leftPressed) 
+		{
+			StartCoroutine(ClawInput(true));
+			leftPressed = true;
+		}
+
+		if (Input.GetAxisRaw ("RightClaw") > 0.4f && !rightClaw && !rightPressed) 
+		{
+			StartCoroutine(ClawInput(false));
+			rightPressed = true;
+		}
+
+		if (Input.GetAxisRaw ("LeftClaw") < 0.4f && leftPressed) 
+		{
+			leftPressed = false;
+		}
+
+		if (Input.GetAxisRaw ("RightClaw") < 0.4f && rightPressed) 
+		{
+			rightPressed = false;
+		}
+
+
+		if ((leftClaw || rightClaw) && flowInterface.GetExitPoint() != null)
 		{
 			float dirNum = AngleDir (transform.forward, flowInterface.GetExitPoint ().position - transform.position, transform.up);
-			if (dirNum  < 0 && Input.GetAxisRaw ("LeftClaw") > 0.4f && !exiting) 
+			if (dirNum  < 0 && leftClaw && !exiting) 
 			{
 				print ("left");
 				StartCoroutine (flowInterface.ExitFlow ());
 				exiting = true;
 			} 
-			else if (dirNum > 0 && Input.GetAxisRaw ("RightClaw") > 0.4f && !exiting)
+			else if (dirNum > 0 && rightClaw && !exiting)
 			{
 				print ("right");
 				StartCoroutine (flowInterface.ExitFlow ());
@@ -86,6 +116,22 @@ public class WaterController : MonoBehaviour {
 		}
 	}
 
+	IEnumerator ClawInput(bool lefty)
+	{
+		if (lefty)
+			leftClaw = true;
+		else
+			rightClaw = true;
+
+		yield return new WaitForSeconds (inputWindow);
+
+		if (lefty)
+			leftClaw = false;
+		else
+			rightClaw = false;
+		
+	}
+
 	public void InitFlow (FlowInstance currentFlow)
 	{
 		amplitude = currentFlow.radius;
@@ -93,8 +139,10 @@ public class WaterController : MonoBehaviour {
 
 	public void ResetFlow()
 	{
-		amplitude = 0;
+		amplitude = 0f;
 		exiting = false;
+		hOffset = 0f;
+		vOffset = 0f;
 	}
 
 	//Returns -1 if target is left and 1 if right (0 if straight forward or backward)
