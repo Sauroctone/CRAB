@@ -9,6 +9,7 @@ public class FlowInterface : MonoBehaviour {
 	FlowMovement flowMovement;
 	WaterController waterControl;
 	PlayerController playerController;
+	SeaWeedManager sW;
 
 	[Header("Detectors")]
 
@@ -42,6 +43,7 @@ public class FlowInterface : MonoBehaviour {
 		flowMovement = GetComponentInParent<FlowMovement> ();
 		waterControl = GetComponent<WaterController> ();
 		playerController = GetComponent<PlayerController> ();
+		sW = GetComponentInChildren<SeaWeedManager> ();
 	}
 
 	/*void Update()
@@ -168,6 +170,7 @@ public class FlowInterface : MonoBehaviour {
 			FlowMode(true);
 			PlayerController.inFlow = true;
 			PlayerController.controlsAble = true;
+			sW.LoseSeaWeeds ();
 		}
 	}
 

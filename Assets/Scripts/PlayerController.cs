@@ -23,10 +23,19 @@ public class PlayerController : MonoBehaviour {
     public float rotLerp;
 	bool onFloor;
 
+	[Header("Claws")]
+	public static bool leftClaw;
+	public static bool rightClaw;
+	bool leftPressed;
+	bool rightPressed;
+	public enum Claw {Left, Right};
+	public float inputWindow;
+
 
     [Header("References")]
 
     public Rigidbody rb;
+	public SeaWeedManager sW;
 
 	void Start()
 	{
@@ -38,6 +47,27 @@ public class PlayerController : MonoBehaviour {
         //Calculate the direction vector based on inputs
 		if (controlsAble) 
 		{
+			//Check claws
+			if (Input.GetAxisRaw ("LeftClaw") > 0.4f && !leftClaw && !leftPressed) 
+			{
+				StartCoroutine(ClawInput(Claw.Left));
+			}
+
+			if (Input.GetAxisRaw ("RightClaw") > 0.4f && !rightClaw && !rightPressed) 
+			{
+				StartCoroutine(ClawInput(Claw.Right));
+			}
+
+			if (Input.GetAxisRaw ("LeftClaw") < 0.4f && leftPressed) 
+			{
+				leftPressed = false;
+			}
+
+			if (Input.GetAxisRaw ("RightClaw") < 0.4f && rightPressed) 
+			{
+				rightPressed = false;
+			}
+
 			hinput = Input.GetAxisRaw ("Horizontal");
 			vinput = Input.GetAxisRaw ("Vertical");
 
@@ -84,6 +114,26 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
     }
+
+	IEnumerator ClawInput(Claw side)
+	{
+		if (side == Claw.Left) {
+			leftClaw = true;
+			leftPressed = true;
+		} else {
+			rightClaw = true;
+			rightPressed = true;
+		}
+
+		sW.OnClaw (side);
+
+		yield return new WaitForSeconds (inputWindow);
+
+		if (side == Claw.Left) 
+			leftClaw = false;
+		else 
+			rightClaw = false;
+	}
 
 	//////////////Updates a boolean tracking if the player is touching the floor or not
 	void OnCollisionEnter(Collision other)

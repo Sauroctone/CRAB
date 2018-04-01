@@ -11,12 +11,6 @@ public class WaterController : MonoBehaviour {
 	float hinput;
 	float vinput;
 
-	[Header("Claws")]
-	bool leftClaw;
-	bool rightClaw;
-	bool leftPressed;
-	bool rightPressed;
-	public float inputWindow;
 
 	[Header("Flow parameter")]
 
@@ -44,40 +38,16 @@ public class WaterController : MonoBehaviour {
 			StartCoroutine (flowInterface.JoinTheFlow ());
 		}
 
-		//Check claws
-		if (Input.GetAxisRaw ("LeftClaw") > 0.4f && !leftClaw && !leftPressed) 
-		{
-			StartCoroutine(ClawInput(true));
-			leftPressed = true;
-		}
-
-		if (Input.GetAxisRaw ("RightClaw") > 0.4f && !rightClaw && !rightPressed) 
-		{
-			StartCoroutine(ClawInput(false));
-			rightPressed = true;
-		}
-
-		if (Input.GetAxisRaw ("LeftClaw") < 0.4f && leftPressed) 
-		{
-			leftPressed = false;
-		}
-
-		if (Input.GetAxisRaw ("RightClaw") < 0.4f && rightPressed) 
-		{
-			rightPressed = false;
-		}
-
-
-		if ((leftClaw || rightClaw) && flowInterface.GetExitPoint() != null)
+		if ((PlayerController.leftClaw || PlayerController.rightClaw) && flowInterface.GetExitPoint() != null)
 		{
 			float dirNum = AngleDir (transform.forward, flowInterface.GetExitPoint ().position - transform.position, transform.up);
-			if (dirNum  < 0 && leftClaw && !exiting) 
+			if (dirNum  < 0 && PlayerController.leftClaw && !exiting) 
 			{
 				print ("left");
 				StartCoroutine (flowInterface.ExitFlow ());
 				exiting = true;
 			} 
-			else if (dirNum > 0 && rightClaw && !exiting)
+			else if (dirNum > 0 && PlayerController.rightClaw && !exiting)
 			{
 				print ("right");
 				StartCoroutine (flowInterface.ExitFlow ());
@@ -114,22 +84,6 @@ public class WaterController : MonoBehaviour {
 			//Update player position
 			transform.localPosition = clampedPos;
 		}
-	}
-
-	IEnumerator ClawInput(bool lefty)
-	{
-		if (lefty)
-			leftClaw = true;
-		else
-			rightClaw = true;
-
-		yield return new WaitForSeconds (inputWindow);
-
-		if (lefty)
-			leftClaw = false;
-		else
-			rightClaw = false;
-		
 	}
 
 	public void InitFlow (FlowInstance currentFlow)
