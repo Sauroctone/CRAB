@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour {
 	public static bool controlsAble = true;
 	Vector3 lastDirection;
 	public Transform meshObject;
+	[Range(1,5)]
+	public float falseGravity;
 
     [Header("Raycast and rotation")]
 
@@ -24,12 +26,15 @@ public class PlayerController : MonoBehaviour {
 	bool onFloor;
 
 	[Header("Claws")]
+	[Range(0.2f, 1f)]
+	public float inputTrigger;
 	public static bool leftClaw;
 	public static bool rightClaw;
 	bool leftPressed;
 	bool rightPressed;
 	public enum Claw {Left, Right};
 	public float inputWindow;
+	Coroutine inputCoroutine;
 
 
     [Header("References")]
@@ -48,24 +53,28 @@ public class PlayerController : MonoBehaviour {
 		if (controlsAble) 
 		{
 			//Check claws
-			if (Input.GetAxisRaw ("LeftClaw") > 0.4f && !leftClaw && !leftPressed) 
+			if (Input.GetAxisRaw ("LeftClaw") > inputTrigger && !leftClaw && !leftPressed) 
 			{
-				StartCoroutine(ClawInput(Claw.Left));
+				inputCoroutine = StartCoroutine(ClawInput(Claw.Left));
 			}
 
-			if (Input.GetAxisRaw ("RightClaw") > 0.4f && !rightClaw && !rightPressed) 
+			if (Input.GetAxisRaw ("RightClaw") > inputTrigger && !rightClaw && !rightPressed) 
 			{
-				StartCoroutine(ClawInput(Claw.Right));
+				inputCoroutine = StartCoroutine(ClawInput(Claw.Right));
 			}
 
-			if (Input.GetAxisRaw ("LeftClaw") < 0.4f && leftPressed) 
+			if (Input.GetAxisRaw ("LeftClaw") < inputTrigger && leftPressed) 
 			{
 				leftPressed = false;
+				if (inputCoroutine != null)
+					StopCoroutine (inputCoroutine);
 			}
 
-			if (Input.GetAxisRaw ("RightClaw") < 0.4f && rightPressed) 
+			if (Input.GetAxisRaw ("RightClaw") < inputTrigger && rightPressed) 
 			{
 				rightPressed = false;
+				if (inputCoroutine != null)
+					StopCoroutine (inputCoroutine);
 			}
 
 			hinput = Input.GetAxisRaw ("Horizontal");
@@ -110,7 +119,7 @@ public class PlayerController : MonoBehaviour {
 			//false "gravity", keeps the player on the surface
 			if (!onFloor) 
 			{
-				rb.velocity += -transform.up;
+				rb.velocity += -transform.up*falseGravity;
 			}
 		}
     }
@@ -133,6 +142,8 @@ public class PlayerController : MonoBehaviour {
 			leftClaw = false;
 		else 
 			rightClaw = false;
+
+		inputCoroutine = null;
 	}
 
 	//////////////Updates a boolean tracking if the player is touching the floor or not

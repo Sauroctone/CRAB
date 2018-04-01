@@ -1179,6 +1179,16 @@ Prefab:
       propertyPath: walkCam
       value: 
       objectReference: {fileID: 1016735281}
+    - target: {fileID: 114786725349868618, guid: 9088d68a697feb540b6d23aa872a8b7b,
+        type: 2}
+      propertyPath: outSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 135847393787712322, guid: 9088d68a697feb540b6d23aa872a8b7b,
+        type: 2}
+      propertyPath: m_Radius
+      value: 0.75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9088d68a697feb540b6d23aa872a8b7b, type: 2}
   m_IsPrefabParent: 0
@@ -1900,7 +1910,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1644334577}
-  m_LocalRotation: {x: 0.03655641, y: -0.2519075, z: -0.016790485, w: 0.9669149}
+  m_LocalRotation: {x: 0.036556132, y: -0.2519075, z: -0.016790526, w: 0.9669149}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2314,7 +2324,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1861858025}
-  m_LocalRotation: {x: -0.12564051, y: -0.25025153, z: -0.05954628, w: 0.95814556}
+  m_LocalRotation: {x: -0.12564014, y: -0.25025147, z: -0.05954603, w: 0.9581456}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2448,7 +2458,7 @@ MonoBehaviour:
   - {fileID: 2002005205}
   doesLoop: 0
   speed: 0.001
-  radius: 2.2
+  radius: 2.3
 --- !u!4 &1883069119
 Transform:
   m_ObjectHideFlags: 0

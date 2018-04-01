@@ -11,7 +11,6 @@ public class WaterController : MonoBehaviour {
 	float hinput;
 	float vinput;
 
-
 	[Header("Flow parameter")]
 
 	public float centerForce;

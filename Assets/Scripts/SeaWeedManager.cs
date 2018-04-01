@@ -33,7 +33,12 @@ public class SeaWeedManager : MonoBehaviour {
 
 	public void LoseSeaWeeds()
 	{
-		
+		for(int i = seaWeeds.Count-1; i >= 0; i--) 
+		{
+			Transform currentSeaWeed = seaWeeds [i];
+			seaWeeds.Remove (seaWeeds[i]);
+			Destroy (currentSeaWeed.gameObject);
+		}
 	}
 
 	void OnTriggerEnter(Collider other)
