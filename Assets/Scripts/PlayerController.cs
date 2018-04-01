@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
+	public static bool isVisible = true;
 
     [Header("Movement")]
 
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour {
     public Rigidbody rb;
 	public SeaWeedManager sW;
 
+
 	void Start()
 	{
 		
@@ -55,11 +57,17 @@ public class PlayerController : MonoBehaviour {
 			//Check claws
 			if (Input.GetAxisRaw ("LeftClaw") > inputTrigger && !leftClaw && !leftPressed) 
 			{
+				if (inputCoroutine != null)
+					StopCoroutine (inputCoroutine);
+				
 				inputCoroutine = StartCoroutine(ClawInput(Claw.Left));
 			}
 
 			if (Input.GetAxisRaw ("RightClaw") > inputTrigger && !rightClaw && !rightPressed) 
 			{
+				if (inputCoroutine != null)
+					StopCoroutine (inputCoroutine);
+				
 				inputCoroutine = StartCoroutine(ClawInput(Claw.Right));
 			}
 
@@ -73,8 +81,6 @@ public class PlayerController : MonoBehaviour {
 			if (Input.GetAxisRaw ("RightClaw") < inputTrigger && rightPressed) 
 			{
 				rightPressed = false;
-				if (inputCoroutine != null)
-					StopCoroutine (inputCoroutine);
 			}
 
 			hinput = Input.GetAxisRaw ("Horizontal");
@@ -84,6 +90,7 @@ public class PlayerController : MonoBehaviour {
 
 			movement = direction * speed;
 		}
+			
     }
 
     void FixedUpdate()
@@ -123,9 +130,11 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
     }
-
+		
+	//Input window for claws
 	IEnumerator ClawInput(Claw side)
 	{
+		print ("clawinput");
 		if (side == Claw.Left) {
 			leftClaw = true;
 			leftPressed = true;
@@ -133,7 +142,7 @@ public class PlayerController : MonoBehaviour {
 			rightClaw = true;
 			rightPressed = true;
 		}
-
+			
 		sW.OnClaw (side);
 
 		yield return new WaitForSeconds (inputWindow);
