@@ -9,6 +9,7 @@ public class FlowInterface : MonoBehaviour {
 	FlowMovement flowMovement;
 	WaterController waterControl;
 	PlayerController playerController;
+	SeaWeedManager sW;
 
 	[Header("Detectors")]
 
@@ -26,6 +27,10 @@ public class FlowInterface : MonoBehaviour {
 	public AnimationCurve joiningCurve;
 	public AnimationCurve exitCurve;
 	public LayerMask layer;
+	[Range(1, 5)]
+	public float inSpeed;
+	[Range(1, 5)]
+	public float outSpeed;
 	RaycastHit hit;
 	GameObject theFlowParent;
 
@@ -38,6 +43,7 @@ public class FlowInterface : MonoBehaviour {
 		flowMovement = GetComponentInParent<FlowMovement> ();
 		waterControl = GetComponent<WaterController> ();
 		playerController = GetComponent<PlayerController> ();
+		sW = GetComponentInChildren<SeaWeedManager> ();
 	}
 
 	/*void Update()
@@ -60,6 +66,7 @@ public class FlowInterface : MonoBehaviour {
 		if (other.transform.tag == "ExitPoint" && PlayerController.inFlow) 
 		{
 			detectedExitPoint = other.transform;
+			other.transform.GetComponent<Renderer>().material.SetFloat("_OutlineSwitch", 1);
 		}
 	}
 
@@ -75,6 +82,7 @@ public class FlowInterface : MonoBehaviour {
 		if (other.transform.tag == "ExitPoint" && other.transform == detectedExitPoint) 
 		{
 			detectedExitPoint = null;
+			other.transform.GetComponent<Renderer>().material.SetFloat("_OutlineSwitch", 0);
 		}
 
 	}
@@ -120,8 +128,7 @@ public class FlowInterface : MonoBehaviour {
 	{
 		if (CheckClosestWaypoint() != null) 
 		{
-			FlowMode(true);
-
+			PlayerController.controlsAble = false;
 			//Get the detected flow & position on the path
 			FlowInstance targetFlow = CheckClosestWaypoint().GetComponentInParent<FlowInstance> ();
 			float targetPercentage = CheckPathPercentage (targetFlow);
@@ -129,18 +136,22 @@ public class FlowInterface : MonoBehaviour {
 			//Init for lerp
 			Vector3 originPosition = transform.position;
 
-			//Keep up for flow movement
+			//Keep up vector for flow movement
 			Vector3 upDirection = transform.up;
 
 			//Resets local rotation of the mesh inside the player
 			StartCoroutine (playerController.ResetMeshRotation ());
 
 			//Lerp towards target point on the path
-			for (float i = 0; i < 1; i+=0.01f)
+			for (float i = 0; i < 1; i+= Time.deltaTime*inSpeed)
 			{
 				transform.position = Vector3.Lerp(originPosition, iTween.PointOnPath(targetFlow.waypoints, targetPercentage), joiningCurve.Evaluate(i));
-				yield return null;
+				transform.rotation = Quaternion.LookRotation (transform.forward, upDirection);
+			
+				yield return new WaitForFixedUpdate();
 			}
+
+			transform.position = iTween.PointOnPath(targetFlow.waypoints, targetPercentage);
 
 			//Create flow parent
 			GameObject flowParent = new GameObject("FlowParent");
@@ -156,13 +167,16 @@ public class FlowInterface : MonoBehaviour {
 			currentFlow = targetFlow;
 
 			//Switch to inFlow mode
-
+			FlowMode(true);
 			PlayerController.inFlow = true;
+			PlayerController.controlsAble = true;
+			sW.LoseSeaWeeds ();
 		}
 	}
 
 	public IEnumerator ExitFlow() 
 	{
+		PlayerController.controlsAble = false;
 		//Destroy flow parent
 		transform.parent = null;
 		Destroy (theFlowParent);
@@ -185,19 +199,22 @@ public class FlowInterface : MonoBehaviour {
 
 		PlayerController.inFlow = false;
 		//Lerp & Slerp
-		for (float i = 0; i < 1; i+=0.01f)
+		for (float i = 0; i < 1; i+=Time.deltaTime*outSpeed)
 		{
 			//transform.position = Vector3.Lerp(originPosition, targetPosition, exitCurve.Evaluate(i));
 			transform.rotation = Quaternion.Slerp (originRotation, targetRotation, exitCurve.Evaluate (i));
-			yield return null;
+			yield return new WaitForFixedUpdate ();
 		}
 
 		//Switch to not in flow mode
 		FlowMode(false);
+		PlayerController.controlsAble = true;
 		waterControl.ResetFlow ();
 		currentFlow = null;
-
-		yield return null;
+	
+		//Reset exit point
+		detectedExitPoint.GetComponent<Renderer>().material.SetFloat("_OutlineSwitch", 0);
+		detectedExitPoint = null;
 	}
 
 	public Transform GetExitPoint()

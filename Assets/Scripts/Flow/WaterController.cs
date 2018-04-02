@@ -37,17 +37,16 @@ public class WaterController : MonoBehaviour {
 			StartCoroutine (flowInterface.JoinTheFlow ());
 		}
 
-		//Check claws
-		if ((Input.GetAxisRaw ("LeftClaw") > 0.4f || Input.GetAxisRaw ("RightClaw") > 0.4f) && flowInterface.GetExitPoint() != null)
+		if ((PlayerController.leftClaw || PlayerController.rightClaw) && flowInterface.GetExitPoint() != null)
 		{
 			float dirNum = AngleDir (transform.forward, flowInterface.GetExitPoint ().position - transform.position, transform.up);
-			if (dirNum  < 0 && Input.GetAxisRaw ("LeftClaw") > 0.4f && !exiting) 
+			if (dirNum  < 0 && PlayerController.leftClaw && !exiting) 
 			{
 				print ("left");
 				StartCoroutine (flowInterface.ExitFlow ());
 				exiting = true;
 			} 
-			else if (dirNum > 0 && Input.GetAxisRaw ("RightClaw") > 0.4f && !exiting)
+			else if (dirNum > 0 && PlayerController.rightClaw && !exiting)
 			{
 				print ("right");
 				StartCoroutine (flowInterface.ExitFlow ());
@@ -62,7 +61,7 @@ public class WaterController : MonoBehaviour {
 
 	void FixedUpdate () 
 	{
-		if (PlayerController.inFlow) 
+		if (PlayerController.inFlow && PlayerController.controlsAble) 
 		{
 			//Swim movement from the player
 			hOffset += swimForce * hinput;
@@ -93,8 +92,10 @@ public class WaterController : MonoBehaviour {
 
 	public void ResetFlow()
 	{
-		amplitude = 0;
+		amplitude = 0f;
 		exiting = false;
+		hOffset = 0f;
+		vOffset = 0f;
 	}
 
 	//Returns -1 if target is left and 1 if right (0 if straight forward or backward)

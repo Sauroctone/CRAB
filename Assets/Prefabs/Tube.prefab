@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 33474693612060884}
   - component: {fileID: 23582394905653814}
   m_Layer: 8
-  m_Name: Parois
+  m_Name: Tube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
