@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 54e30a12b22bc6141acb7332b41ff3f5
-timeCreated: 1522946620
+guid: bc5217228e7a3d04fb30e3e631fb3d16
+timeCreated: 1522966269
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -10,13 +10,9 @@ ModelImporter:
     2100000: No Name
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cylinder129
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: f8dfc7e6eaab30342b9d3409fa6eeb35, type: 2}
+    4300000: Sphere001
+    9500000: //RootNode
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -90,7 +86,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
