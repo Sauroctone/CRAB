@@ -45,11 +45,6 @@ public class FlowMovement : MonoBehaviour {
 			}
 		}
 	}
-
-	void OnDrawGizmos()
-	{
-		iTween.DrawPath (waypoints);
-	}
 		
 	public void InitFlow(FlowInstance detectedFlow, float percentage, Vector3 upVector)
 	{
