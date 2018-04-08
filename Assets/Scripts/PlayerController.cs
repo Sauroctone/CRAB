@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour {
 
     public Rigidbody rb;
 	public SeaWeedManager sW;
+    public SoundManager soundMan;
 
 
 	void Start()
@@ -134,14 +135,23 @@ public class PlayerController : MonoBehaviour {
 	//Input window for claws
 	IEnumerator ClawInput(Claw side)
 	{
-		print ("clawinput");
-		if (side == Claw.Left) {
+		if (side == Claw.Left)
+        {
 			leftClaw = true;
 			leftPressed = true;
-		} else {
+
+            soundMan.Play(soundMan.pincer, 0.95f, 1.05f, -0.3f);
+            print("gauche");
+        }
+
+        else
+        {
 			rightClaw = true;
 			rightPressed = true;
-		}
+
+            soundMan.Play(soundMan.pincer, 0.95f, 1.05f, 0.3f);
+            print("droite");
+        }
 			
 		sW.OnClaw (side);
 
@@ -182,8 +192,9 @@ public class PlayerController : MonoBehaviour {
 		Vector3 left = Vector3.Cross (forward,normal);
 		Vector3 newForward = Vector3.Cross (normal,left);
 
-		//new rotation thanks to normal and forward
-		Quaternion newRotation = Quaternion.LookRotation (newForward, normal);
+        //new rotation thanks to normal and forward
+
+        Quaternion newRotation = Quaternion.LookRotation (newForward, normal);
 
 		return newRotation;
 	}

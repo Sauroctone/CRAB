@@ -21,7 +21,8 @@ public class WaterController : MonoBehaviour {
 
 	[Header("References")]
 
-	FlowInterface flowInterface; 
+	FlowInterface flowInterface;
+    public SoundManager soundMan;
 
 	// Use this for initialization
 	void Start () {
@@ -42,13 +43,12 @@ public class WaterController : MonoBehaviour {
 			float dirNum = AngleDir (transform.forward, flowInterface.GetExitPoint ().position - transform.position, transform.up);
 			if (dirNum  < 0 && PlayerController.leftClaw && !exiting) 
 			{
-				print ("left");
 				StartCoroutine (flowInterface.ExitFlow ());
 				exiting = true;
 			} 
 			else if (dirNum > 0 && PlayerController.rightClaw && !exiting)
 			{
-				print ("right");
+
 				StartCoroutine (flowInterface.ExitFlow ());
 				exiting = true;
 			}
