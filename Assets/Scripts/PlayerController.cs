@@ -34,8 +34,9 @@ public class PlayerController : MonoBehaviour {
 	bool leftPressed;
 	bool rightPressed;
 	public enum Claw {Left, Right};
-	public float inputWindow;
-	Coroutine inputCoroutine;
+	public float clawCooldown;
+	Coroutine leftPincerCor;
+    Coroutine rightPincerCor;
 
 
     [Header("References")]
@@ -55,36 +56,57 @@ public class PlayerController : MonoBehaviour {
         //Calculate the direction vector based on inputs
 		if (controlsAble) 
 		{
-			//Check claws
-			if (Input.GetAxisRaw ("LeftClaw") > inputTrigger && !leftClaw && !leftPressed) 
-			{
-				if (inputCoroutine != null)
-					StopCoroutine (inputCoroutine);
-				
-				inputCoroutine = StartCoroutine(ClawInput(Claw.Left));
-			}
+            ////Check claws
+            //if (Input.GetAxisRaw ("LeftClaw") > inputTrigger && !leftClaw && !leftPressed) 
+            //{
+            //	if (inputCoroutine != null)
+            //		StopCoroutine (inputCoroutine);
 
-			if (Input.GetAxisRaw ("RightClaw") > inputTrigger && !rightClaw && !rightPressed) 
-			{
-				if (inputCoroutine != null)
-					StopCoroutine (inputCoroutine);
-				
-				inputCoroutine = StartCoroutine(ClawInput(Claw.Right));
-			}
+            //	inputCoroutine = StartCoroutine(ClawInput(Claw.Left));
+            //}
 
-			if (Input.GetAxisRaw ("LeftClaw") < inputTrigger && leftPressed) 
-			{
-				leftPressed = false;
-				if (inputCoroutine != null)
-					StopCoroutine (inputCoroutine);
-			}
+            //if (Input.GetAxisRaw ("RightClaw") > inputTrigger && !rightClaw && !rightPressed) 
+            //{
+            //	if (inputCoroutine != null)
+            //		StopCoroutine (inputCoroutine);
 
-			if (Input.GetAxisRaw ("RightClaw") < inputTrigger && rightPressed) 
-			{
-				rightPressed = false;
-			}
+            //	inputCoroutine = StartCoroutine(ClawInput(Claw.Right));
+            //}
 
-			hinput = Input.GetAxisRaw ("Horizontal");
+            //if (Input.GetAxisRaw ("LeftClaw") < inputTrigger && leftPressed) 
+            //{
+            //	leftPressed = false;
+            //	/*if (inputCoroutine != null)
+            //		StopCoroutine (inputCoroutine);*/
+            //}
+
+            //if (Input.GetAxisRaw ("RightClaw") < inputTrigger && rightPressed) 
+            //{
+            //	rightPressed = false;
+            //}
+
+            //Check claws
+            if (Input.GetAxisRaw("LeftClaw") > 0 && !leftClaw && !leftPressed)
+            {
+                StartCoroutine(ClawInput(Claw.Left));
+            }
+
+            if (Input.GetAxisRaw("RightClaw") > 0 && !rightClaw && !rightPressed)
+            {
+                StartCoroutine(ClawInput(Claw.Right));
+            }
+
+            if (Input.GetAxisRaw("LeftClaw") == 0 && leftPressed)
+            {
+                leftPressed = false;
+            }
+
+            if (Input.GetAxisRaw("RightClaw") == 0 && rightPressed)
+            {
+                rightPressed = false;
+            }
+
+            hinput = Input.GetAxisRaw ("Horizontal");
 			vinput = Input.GetAxisRaw ("Vertical");
 
 			direction = new Vector3 (hinput, 0f, vinput).normalized;
@@ -140,7 +162,7 @@ public class PlayerController : MonoBehaviour {
 			leftClaw = true;
 			leftPressed = true;
 
-            soundMan.Play(soundMan.pincer, 0.95f, 1.05f, -0.3f);
+            soundMan.Play(soundMan.pincer, 0.95f, 1.05f, -0.1f);
             print("gauche");
         }
 
@@ -149,20 +171,18 @@ public class PlayerController : MonoBehaviour {
 			rightClaw = true;
 			rightPressed = true;
 
-            soundMan.Play(soundMan.pincer, 0.95f, 1.05f, 0.3f);
+            soundMan.Play(soundMan.pincer, 0.95f, 1.05f, 0.1f);
             print("droite");
         }
 			
 		sW.OnClaw (side);
 
-		yield return new WaitForSeconds (inputWindow);
+		yield return new WaitForSeconds (clawCooldown);
 
 		if (side == Claw.Left) 
 			leftClaw = false;
 		else 
 			rightClaw = false;
-
-		inputCoroutine = null;
 	}
 
 	//////////////Updates a boolean tracking if the player is touching the floor or not

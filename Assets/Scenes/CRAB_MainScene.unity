@@ -1168,6 +1168,11 @@ Prefab:
       propertyPath: walkCam
       value: 
       objectReference: {fileID: 1016735281}
+    - target: {fileID: 114866364445516728, guid: 9088d68a697feb540b6d23aa872a8b7b,
+        type: 2}
+      propertyPath: clawCooldown
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9088d68a697feb540b6d23aa872a8b7b, type: 2}
   m_IsPrefabParent: 0
@@ -1863,7 +1868,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1644334577}
-  m_LocalRotation: {x: 0.03655614, y: -0.2519075, z: -0.016790075, w: 0.9669149}
+  m_LocalRotation: {x: 0.036556523, y: -0.2519075, z: -0.01678983, w: 0.9669149}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2218,7 +2223,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1861858025}
-  m_LocalRotation: {x: -0.12564039, y: -0.2502513, z: -0.059544303, w: 0.95814574}
+  m_LocalRotation: {x: -0.1256406, y: -0.2502511, z: -0.059543774, w: 0.9581458}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2537,11 +2542,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 17
       objectReference: {fileID: 0}
-    - target: {fileID: 82263557203930396, guid: d3c88dcf7d2cd114abd2e79e33968978,
-        type: 2}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: f30aa51cda0065b4e83eba5575a99981, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d3c88dcf7d2cd114abd2e79e33968978, type: 2}
   m_IsPrefabParent: 0

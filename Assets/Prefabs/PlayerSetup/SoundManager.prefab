@@ -219,7 +219,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f30aa51cda0065b4e83eba5575a99981, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -708,4 +708,4 @@ MonoBehaviour:
   - {fileID: 82124791191867208}
   - {fileID: 82210408980841676}
   - {fileID: 82297980052255318}
-  pincer: {fileID: 8300000, guid: cb6bd0b9525551942864a78be06fe37e, type: 3}
+  pincer: {fileID: 8300000, guid: e6455d9c32cb66a47b192b2cfd980297, type: 3}
