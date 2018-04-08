@@ -1266,6 +1266,7 @@ MonoBehaviour:
   inputWindow: 0.2
   rb: {fileID: 54350007487400318}
   sW: {fileID: 114445862655727020}
+  soundMan: {fileID: 0}
 --- !u!135 &135222293517448452
 SphereCollider:
   m_ObjectHideFlags: 1
