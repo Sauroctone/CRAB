@@ -1,0 +1,156 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: M_WindTunnelInt
+  m_Shader: {fileID: 4800000, guid: 679de4fa600e389489e22f7d2bc1d434, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Albedo:
+        m_Texture: {fileID: 2800000, guid: 9e151404905cead4fa3f4a0130011b9c, type: 3}
+        m_Scale: {x: 1, y: 4}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DummyTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 4}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Opacity:
+        m_Texture: {fileID: 2800000, guid: 71d2fa21a54894d0b99e235891d58084, type: 3}
+        m_Scale: {x: 1, y: 0}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: 144e9ca7e117ae745916e1c164e6e915, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample1:
+        m_Texture: {fileID: 2800000, guid: 3b138f74d4d2a9045935098def93a3a6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample2:
+        m_Texture: {fileID: 2800000, guid: 1c4710c7427022f4cafd25a2e510511d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _VertexNoise:
+        m_Texture: {fileID: 2800000, guid: 13712458a94e5be4488d9964f17de88a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _ChromaticAberration: 0.056
+    - _Cutoff: 0.3
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _Emission: 1
+    - _Float1: 0
+    - _Float2: 1
+    - _GeneralOpacity: 0.2
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Highlight: 5
+    - _Mask: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _Refraction: 0.1
+    - _RefractionAngle: 0
+    - _RefractionValue: 1
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _StrokeAIntensity: 0.1
+    - _StrokeBIntensity: 1
+    - _StrokeCIntensity: 0.05
+    - _TessMax: 25
+    - _TessMin: 10
+    - _TessValue: 1
+    - _UVSec: 0
+    - _VertexOffsetIntensity: 0.5
+    - _VertextOffsetSpeed: -10
+    - _ZWrite: 1
+    - __dirty: 0
+    - _verticalSpeed: 0.1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RotationSpeed: {r: -0.4, g: 0, b: 0, a: 0}
+    - _RotationSpeedOpacity: {r: 0, g: 0, b: 0, a: 0}
+    - _SpeedStrokeA: {r: -2.5, g: -3.5, b: 0, a: 0}
+    - _SpeedStrokeB: {r: -0.5, g: -1.5, b: 0, a: 0}
+    - _SpeedStrokeC: {r: -1, g: -1.75, b: 0, a: 0}
+    - _StrokeATil: {r: 1, g: 2, b: 0, a: 0}
+    - _StrokeATiling: {r: 5, g: 20, b: 0, a: 0}
+    - _StrokeBTiling: {r: 1, g: 6, b: 0, a: 0}
+    - _StrokeCTiling: {r: 4, g: 15, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 4, b: 0, a: 0}
+    - _TilingOpacity: {r: 1, g: 10, b: 0, a: 0}
+    - _Tint: {r: 0.77205884, g: 1, b: 0.9056795, a: 1}
+    - _VO_Tiling: {r: 2, g: 3, b: 0, a: 0}
+    - _Vector0: {r: 0, g: 0, b: 0, a: 0}
+    - _Vector1: {r: 1, g: 4, b: 0, a: 0}
+    - _Vector10: {r: 1, g: 4, b: 0, a: 0}
+    - _Vector2: {r: 1, g: 4, b: 0, a: 0}
+    - _Vector3: {r: 1, g: 2, b: 0, a: 0}
+    - _Vector6: {r: 1, g: 1, b: 0, a: 0}
+    - _VertexOffsetSpeed: {r: 0.5, g: -0.2, b: 0, a: 0}

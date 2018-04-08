@@ -31,7 +31,7 @@ public class SeaWeedManager : MonoBehaviour {
 			detectedSeaWeeds[0].parent = slots[seaWeeds.Count];
 			Vector3 scaleSave = detectedSeaWeeds [0].localScale;
 			detectedSeaWeeds[0].localScale = new Vector3 (scaleSave.x/2, scaleSave.y/2, scaleSave.z/2);
-			detectedSeaWeeds[0].localRotation = Quaternion.Euler(new Vector3 (0,0,0));
+			detectedSeaWeeds[0].localRotation = Quaternion.Euler(new Vector3 (0,Random.Range(-135,135),0));
 			seaWeeds.Add (detectedSeaWeeds[0]);
 			detectedSeaWeeds[0].tag = "Untagged";
 			detectedSeaWeeds.RemoveAt(0);

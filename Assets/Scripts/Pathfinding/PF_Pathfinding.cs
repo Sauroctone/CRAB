@@ -7,81 +7,79 @@ public class PF_Pathfinding : MonoBehaviour {
 
 	PF_Grid grid;
 
-	public Transform target, seeker;
-
 	void Awake () {
 		grid = GetComponent<PF_Grid> ();
 	}
-
-	void Update()
-	{
-		FindPath (seeker.position, target.position);
-	}
 	
-	void FindPath(Vector3 startPos, Vector3 targetPos)
+	public Vector3[] FindPath(Vector3 startPos, Vector3 targetPos)
 	{
+		Vector3[] waypoints = new Vector3[0];
+		bool pathSuccess = false;
+
 		Node startNode = grid.GetNodeFromWorldPoint (startPos); 
 		Node targetNode = grid.GetNodeFromWorldPoint (targetPos); 
 
-		Heap<Node> openSet = new Heap<Node> (grid.MaxSize); //Nodes to be evaluated (check if it is the closest to target)
-		HashSet<Node> closedSet = new HashSet<Node> ();//Nodes already evaluated (is used to add his neighbours to the openSet)
-		openSet.Add (startNode);
+		if (startNode.walkable && targetNode.walkable) {
+			Heap<Node> openSet = new Heap<Node> (grid.MaxSize); //Nodes to be evaluated (check if it is the closest to target)
+			HashSet<Node> closedSet = new HashSet<Node> ();//Nodes already evaluated (is used to add his neighbours to the openSet)
+			openSet.Add (startNode);
 
-		while (openSet.Count > 0) 
-		{
-			Node currentNode = openSet.RemoveFirst();
+			while (openSet.Count > 0) {
+				Node currentNode = openSet.RemoveFirst ();
 
-			/*//Find the node with the lowest fCost (picks the one with the lowest hcost if there are several)
-			for (int i = 1; i < openSet.Count; i++)
-			{
-				if (openSet [i].fCost < currentNode.fCost || openSet [i].fCost == currentNode.fCost && openSet [i].hCost < currentNode.hCost) 
+				/*//Find the node with the lowest fCost (picks the one with the lowest hcost if there are several)
+				for (int i = 1; i < openSet.Count; i++)
 				{
-					currentNode = openSet [i];
-				}
-			}
-
-			//The node is eveluated, so we pass it to the closedSet
-			openSet.Remove (currentNode);*/
-			closedSet.Add (currentNode);
-
-			//Checks if the node is the target
-			if (currentNode == targetNode) 
-			{
-				RetracePath (startNode, targetNode);
-				return;
-			}
-
-			//Check the neighbours of the current node to add them to the open set 
-			//where they will be evaluted in the next loop
-			foreach (Node neighbour in grid.GetNeighbours(currentNode)) 
-			{
-				// pass the node if it's not walkable or has already been evaluted
-				if (!neighbour.walkable || closedSet.Contains (neighbour)) {
-					continue;
-				}
-
-				//update or set gCost and hCost of the node
-				int newMovementCostToNeighbour = currentNode.gCost + GetDistance (currentNode, neighbour);
-				if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains (neighbour)) 
-				{
-					neighbour.gCost = newMovementCostToNeighbour;
-					neighbour.hCost = GetDistance (neighbour, targetNode);
-					//set the currentNode as "parent" (it's a variable) of the neighbour node 
-					//(the "parenting" hierachy will help trace the path from the target to the start)
-					neighbour.parent = currentNode;
-
-					//Add to open set if it's not already in
-					if (!openSet.Contains (neighbour)) 
+					if (openSet [i].fCost < currentNode.fCost || openSet [i].fCost == currentNode.fCost && openSet [i].hCost < currentNode.hCost) 
 					{
-						openSet.Add (neighbour);
-						openSet.UpdateItem (neighbour);
+						currentNode = openSet [i];
+					}
+				}
+
+				//The node is eveluated, so we pass it to the closedSet
+				openSet.Remove (currentNode);*/
+				closedSet.Add (currentNode);
+
+				//Checks if the node is the target
+				if (currentNode == targetNode) {
+					pathSuccess = true;
+					break;
+				}
+
+				//Check the neighbours of the current node to add them to the open set 
+				//where they will be evaluted in the next loop
+				foreach (Node neighbour in grid.GetNeighbours(currentNode)) {
+					// pass the node if it's not walkable or has already been evaluted
+					if (!neighbour.walkable || closedSet.Contains (neighbour)) {
+						continue;
+					}
+
+					//update or set gCost and hCost of the node
+					int newMovementCostToNeighbour = currentNode.gCost + GetDistance (currentNode, neighbour);
+					if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains (neighbour)) {
+						neighbour.gCost = newMovementCostToNeighbour;
+						neighbour.hCost = GetDistance (neighbour, targetNode);
+						//set the currentNode as "parent" (it's a variable) of the neighbour node 
+						//(the "parenting" hierachy will help trace the path from the target to the start)
+						neighbour.parent = currentNode;
+
+						//Add to open set if it's not already in
+						if (!openSet.Contains (neighbour)) {
+							openSet.Add (neighbour);
+							openSet.UpdateItem (neighbour);
+						}
 					}
 				}
 			}
 		}
+		if (pathSuccess) {
+			waypoints = RetracePath (startNode, targetNode);
+			return RetracePath (startNode, targetNode);
+		} else
+			return null;
 	}
 
-	void RetracePath(Node startNode, Node endNode)
+	Vector3[] RetracePath(Node startNode, Node endNode)
 	{
 		List<Node> path = new List<Node> ();
 		Node currentNode = endNode;
@@ -91,9 +89,29 @@ public class PF_Pathfinding : MonoBehaviour {
 			path.Add (currentNode);
 			currentNode = currentNode.parent;
 		}
-		path.Reverse ();
+		path.Add (startNode);
+		Vector3[] waypoints = SimplifyPath (path);
+		Array.Reverse (waypoints);
+		return waypoints;
+		//grid.path = path;
+	}
 
-		grid.path = path;
+	Vector3[] SimplifyPath(List<Node> path)
+	{
+		List<Vector3> waypoints = new List<Vector3>();
+		Vector3 directionOld = new Vector3 (0,0,0);
+
+		for (int i = 1; i < path.Count; i++) 
+		{
+			Vector3 directionNew = new Vector3 (path [i - 1].gridX - path [i].gridX, path [i - 1].gridY - path [i].gridY, path [i - 1].gridZ - path [i].gridZ);
+			if (directionNew != directionOld) 
+			{
+				waypoints.Add (path [i-1].worldPosition);
+			}
+			directionOld = directionNew;
+		}
+
+		return waypoints.ToArray();
 	}
 
 	int GetDistance(Node nodeA, Node nodeB)

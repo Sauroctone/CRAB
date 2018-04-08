@@ -18,4 +18,9 @@ public class FlowInstance : MonoBehaviour {
 	void Update () {
 		
 	}
+
+	void OnDrawGizmos()
+	{
+		iTween.DrawPath (waypoints);
+	}
 }

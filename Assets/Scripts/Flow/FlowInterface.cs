@@ -185,6 +185,7 @@ public class FlowInterface : MonoBehaviour {
 		//Reset waterControl
 
 		//Init lerp
+		GetComponent<Rigidbody>().velocity = new Vector3 (0,0,0);
 		Vector3 originPosition = transform.position;
 		Quaternion originRotation = transform.rotation;
 		Vector3 rayDirection = detectedExitPoint.GetComponent<ExitPoint> ().GetExitTarget (transform) - transform.position;
