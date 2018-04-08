@@ -38,53 +38,18 @@ public class PlayerController : MonoBehaviour {
 	Coroutine leftPincerCor;
     Coroutine rightPincerCor;
 
-
     [Header("References")]
 
     public Rigidbody rb;
 	public SeaWeedManager sW;
     public SoundManager soundMan;
+    public ParticleSystem leftMoveBubbles;
+    public ParticleSystem rightMoveBubbles;
 
-
-	void Start()
-	{
-		
-	}
-
-	void Update ()
+    void Update ()
     {
-        //Calculate the direction vector based on inputs
 		if (controlsAble) 
 		{
-            ////Check claws
-            //if (Input.GetAxisRaw ("LeftClaw") > inputTrigger && !leftClaw && !leftPressed) 
-            //{
-            //	if (inputCoroutine != null)
-            //		StopCoroutine (inputCoroutine);
-
-            //	inputCoroutine = StartCoroutine(ClawInput(Claw.Left));
-            //}
-
-            //if (Input.GetAxisRaw ("RightClaw") > inputTrigger && !rightClaw && !rightPressed) 
-            //{
-            //	if (inputCoroutine != null)
-            //		StopCoroutine (inputCoroutine);
-
-            //	inputCoroutine = StartCoroutine(ClawInput(Claw.Right));
-            //}
-
-            //if (Input.GetAxisRaw ("LeftClaw") < inputTrigger && leftPressed) 
-            //{
-            //	leftPressed = false;
-            //	/*if (inputCoroutine != null)
-            //		StopCoroutine (inputCoroutine);*/
-            //}
-
-            //if (Input.GetAxisRaw ("RightClaw") < inputTrigger && rightPressed) 
-            //{
-            //	rightPressed = false;
-            //}
-
             //Check claws
             if (Input.GetAxisRaw("LeftClaw") > 0 && !leftClaw && !leftPressed)
             {
@@ -106,13 +71,31 @@ public class PlayerController : MonoBehaviour {
                 rightPressed = false;
             }
 
+            //Calculate the direction vector based on inputs
             hinput = Input.GetAxisRaw ("Horizontal");
 			vinput = Input.GetAxisRaw ("Vertical");
 
 			direction = new Vector3 (hinput, 0f, vinput).normalized;
 
 			movement = direction * speed;
-		}
+
+            //Bubble particles while moving
+            if (movement != Vector3.zero)
+            {
+                if (!leftMoveBubbles.isPlaying)
+                    leftMoveBubbles.Play();
+                if (!rightMoveBubbles.isPlaying)
+                    rightMoveBubbles.Play();
+            }
+
+            else
+            {
+                if (leftMoveBubbles.isPlaying)
+                    leftMoveBubbles.Stop();
+                if (rightMoveBubbles.isPlaying)
+                    rightMoveBubbles.Stop();
+            }
+        }
 			
     }
 
@@ -151,6 +134,7 @@ public class PlayerController : MonoBehaviour {
 			{
 				rb.velocity += -transform.up*falseGravity;
 			}
+         
 		}
     }
 		
