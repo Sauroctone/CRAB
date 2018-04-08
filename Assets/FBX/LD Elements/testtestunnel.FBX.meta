@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: d01b3bc4787223c4aba3217edde5657b
-timeCreated: 1523107937
+guid: 7868c76acb4bdd345936536e1a2081b9
+timeCreated: 1523180359
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -130,9 +130,10 @@ ModelImporter:
     400120: //RootNode
     400122: windTunnelMesh
     2100000: 'Material #25'
-    2300000: windTunnelMesh
-    3300000: windTunnelMesh
     4300000: windTunnelMesh
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: windTunnelMesh
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -207,7 +208,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

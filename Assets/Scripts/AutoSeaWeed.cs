@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AutoSeaWeed : MonoBehaviour {
 	public LayerMask layer;
-	public bool quarter;
+	public Vector3 scaleValueMin;
+	public Vector3 scaleValueMax;
 	RaycastHit hit;
 	// Use this for initialization
 	void Start () 
@@ -13,17 +14,11 @@ public class AutoSeaWeed : MonoBehaviour {
 			
 		if (Physics.Raycast (ray, out hit, 1f, layer)) 
 		{
-			print ("hit");
 			transform.position = hit.point;
 			transform.rotation = GetRotationFromNormal(hit.normal, transform.forward);
 		}
 
-		transform.localScale = new Vector3 (Random.Range (1.8f, 2f), Random.Range (1.7f, 2f), Random.Range (1.8f, 2f));
-
-		if (quarter) 
-		{
-			transform.rotation = Quaternion.Euler(new Vector3 (transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z)); 
-		}
+		transform.localScale = new Vector3 (Random.Range (scaleValueMin.x, scaleValueMax.x), Random.Range (scaleValueMin.y, scaleValueMax.y), Random.Range (scaleValueMin.z, scaleValueMax.z));
 	}
 	
 	// Update is called once per frame
