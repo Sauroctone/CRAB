@@ -161,56 +161,40 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1905538121}
     m_Modifications:
-    - target: {fileID: 13700000, guid: 7868c76acb4bdd345936536e1a2081b9, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 400120, guid: 7868c76acb4bdd345936536e1a2081b9, type: 3}
+    - target: {fileID: 4677722780732886, guid: 43ab93c054606f34aa9e326ead419101, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400120, guid: 7868c76acb4bdd345936536e1a2081b9, type: 3}
+    - target: {fileID: 4677722780732886, guid: 43ab93c054606f34aa9e326ead419101, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400120, guid: 7868c76acb4bdd345936536e1a2081b9, type: 3}
+    - target: {fileID: 4677722780732886, guid: 43ab93c054606f34aa9e326ead419101, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400120, guid: 7868c76acb4bdd345936536e1a2081b9, type: 3}
+    - target: {fileID: 4677722780732886, guid: 43ab93c054606f34aa9e326ead419101, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400120, guid: 7868c76acb4bdd345936536e1a2081b9, type: 3}
+    - target: {fileID: 4677722780732886, guid: 43ab93c054606f34aa9e326ead419101, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400120, guid: 7868c76acb4bdd345936536e1a2081b9, type: 3}
+    - target: {fileID: 4677722780732886, guid: 43ab93c054606f34aa9e326ead419101, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400120, guid: 7868c76acb4bdd345936536e1a2081b9, type: 3}
+    - target: {fileID: 4677722780732886, guid: 43ab93c054606f34aa9e326ead419101, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 400120, guid: 7868c76acb4bdd345936536e1a2081b9, type: 3}
+    - target: {fileID: 4677722780732886, guid: 43ab93c054606f34aa9e326ead419101, type: 2}
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 13700000, guid: 7868c76acb4bdd345936536e1a2081b9, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 477ab8336a7603c40ade7d088f9a056e, type: 2}
-    - target: {fileID: 13700000, guid: 7868c76acb4bdd345936536e1a2081b9, type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: eb4e9665852753043b1d288ffe28afbb, type: 2}
-    - target: {fileID: 13700000, guid: 7868c76acb4bdd345936536e1a2081b9, type: 3}
-      propertyPath: m_Materials.Array.data[2]
-      value: 
-      objectReference: {fileID: 2100000, guid: f9c9055f5b00fd14a8d8d89f671200e5, type: 2}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 7868c76acb4bdd345936536e1a2081b9, type: 3}
+  m_ParentPrefab: {fileID: 100100000, guid: 43ab93c054606f34aa9e326ead419101, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &238156987
 GameObject:
@@ -986,27 +970,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -1.5830001, y: 1.17, z: 0}
---- !u!1 &1346487202 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100120, guid: 7868c76acb4bdd345936536e1a2081b9, type: 3}
-  m_PrefabInternal: {fileID: 46692425}
 --- !u!4 &1346487203 stripped
 Transform:
-  m_PrefabParentObject: {fileID: 400120, guid: 7868c76acb4bdd345936536e1a2081b9, type: 3}
+  m_PrefabParentObject: {fileID: 4677722780732886, guid: 43ab93c054606f34aa9e326ead419101,
+    type: 2}
   m_PrefabInternal: {fileID: 46692425}
---- !u!114 &1346487205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1346487202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55cdfc58ab88493439c3aeafe2ff27b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waypoints: []
-  bones: []
 --- !u!1 &1360647755
 GameObject:
   m_ObjectHideFlags: 0

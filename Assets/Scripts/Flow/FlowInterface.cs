@@ -128,15 +128,17 @@ public class FlowInterface : MonoBehaviour {
 	{
 		if (CheckClosestWaypoint() != null) 
 		{
+			Transform detectedWaypoint = CheckClosestWaypoint ();
 			PlayerController.controlsAble = false;
 			//Get the detected flow & position on the path
-			FlowInstance targetFlow = CheckClosestWaypoint().GetComponentInParent<FlowInstance> ();
+			FlowInstance targetFlow = detectedWaypoint.GetComponentInParent<FlowInstance> ();
 			float targetPercentage = CheckPathPercentage (targetFlow);
 
 			//Init for lerp
 			Vector3 originPosition = transform.position;
 
 			//Keep up vector for flow movement
+			//New UP
 			Vector3 upDirection = transform.up;
 
 			//Resets local rotation of the mesh inside the player
