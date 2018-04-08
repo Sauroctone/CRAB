@@ -146,7 +146,7 @@ public class PlayerController : MonoBehaviour {
 			leftClaw = true;
 			leftPressed = true;
 
-            //soundMan.Play(soundMan.pincer, 0.95f, 1.05f, -0.1f);
+            soundMan.Play(soundMan.pincer, 0.95f, 1.05f, -0.1f);
             print("gauche");
         }
 
@@ -155,7 +155,7 @@ public class PlayerController : MonoBehaviour {
 			rightClaw = true;
 			rightPressed = true;
 
-            //soundMan.Play(soundMan.pincer, 0.95f, 1.05f, 0.1f);
+            soundMan.Play(soundMan.pincer, 0.95f, 1.05f, 0.1f);
             print("droite");
         }
 			
