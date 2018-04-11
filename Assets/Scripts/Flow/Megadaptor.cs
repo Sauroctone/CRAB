@@ -5,6 +5,7 @@ using UnityEngine;
 public class Megadaptor : MonoBehaviour {
 	MegaShape shape;
 	Transform[] flowWaypoints;
+	bool once;
 	// Use this for initialization
 	void Start () 
 	{
@@ -27,7 +28,10 @@ public class Megadaptor : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Mesh m = GetComponentInChildren<MeshFilter>().mesh;
-		m.bounds = new Bounds(Vector3.zero, Vector3.one * 500);
+		if (!once) {
+			Mesh m = GetComponentInChildren<MeshFilter> ().mesh;
+			m.bounds = new Bounds (Vector3.zero, Vector3.one * 500);
+			once = true;
+		}
 	}
 }
