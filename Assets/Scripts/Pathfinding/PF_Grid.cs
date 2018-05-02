@@ -87,12 +87,12 @@ public class PF_Grid : MonoBehaviour {
 		return grid [x, y, z];
 	}
 
-	//public List<Node> path;
+	public List<Node> path;
 	void OnDrawGizmos()
 	{
 		Gizmos.DrawWireCube (transform.position, gridWorldSize);
 
-		/*if (grid != null)
+		if (grid != null)
 		{
 			foreach (Node n in grid) 
 			{
@@ -101,6 +101,6 @@ public class PF_Grid : MonoBehaviour {
 						Gizmos.DrawCube (n.worldPosition, Vector3.one * (nodeDiameter - 0.1f));
 				
 			}
-		}*/
+		}
 	}
 }

@@ -98,6 +98,7 @@ public class PF_Pathfinding : MonoBehaviour {
 
 	Vector3[] SimplifyPath(List<Node> path)
 	{
+		grid.path = path;
 		List<Vector3> waypoints = new List<Vector3>();
 		Vector3 directionOld = new Vector3 (0,0,0);
 
