@@ -45,11 +45,12 @@ public class WaterController : MonoBehaviour {
 			{
 				StartCoroutine (flowInterface.ExitFlow ());
 				exiting = true;
+                soundMan.Play(soundMan.pincerRock, -0.1f);
 			} 
 			else if (dirNum > 0 && PlayerController.rightClaw && !exiting)
 			{
-
-				StartCoroutine (flowInterface.ExitFlow ());
+                soundMan.Play(soundMan.pincerRock, 0.1f);
+                StartCoroutine (flowInterface.ExitFlow ());
 				exiting = true;
 			}
 		}

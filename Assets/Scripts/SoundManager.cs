@@ -5,8 +5,11 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour {
 
     public AudioSource[] sourcePool;
+    public AudioSource flowSource;
 
     public AudioClip pincer;
+    public AudioClip pincerAlgae;
+    public AudioClip pincerRock;
 
     public void Play(AudioClip _clip)
     {

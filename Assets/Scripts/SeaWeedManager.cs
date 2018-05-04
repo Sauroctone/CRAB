@@ -22,20 +22,24 @@ public class SeaWeedManager : MonoBehaviour {
 			PlayerController.isVisible = true;
 	}
 
-	public void OnClaw(PlayerController.Claw side)
+	public bool OnClaw(PlayerController.Claw side)
 	{
-		//If a sea weed is detected when the function is called, it is set as a children and placed on a spot
-		if (detectedSeaWeeds.Count != 0 && seaWeeds.Count < 3) 
-		{
-			detectedSeaWeeds[0].position = slots[seaWeeds.Count].position;
-			detectedSeaWeeds[0].parent = slots[seaWeeds.Count];
-			Vector3 scaleSave = detectedSeaWeeds [0].localScale;
-			detectedSeaWeeds[0].localScale = new Vector3 (scaleSave.x/2, scaleSave.y/2, scaleSave.z/2);
-			detectedSeaWeeds[0].localRotation = Quaternion.Euler(new Vector3 (0,Random.Range(-135,135),0));
-			seaWeeds.Add (detectedSeaWeeds[0]);
-			detectedSeaWeeds[0].tag = "Untagged";
-			detectedSeaWeeds.RemoveAt(0);
-		}
+        //If a sea weed is detected when the function is called, it is set as a children and placed on a spot
+        if (detectedSeaWeeds.Count != 0 && seaWeeds.Count < 3)
+        {
+            detectedSeaWeeds[0].position = slots[seaWeeds.Count].position;
+            detectedSeaWeeds[0].parent = slots[seaWeeds.Count];
+            Vector3 scaleSave = detectedSeaWeeds[0].localScale;
+            detectedSeaWeeds[0].localScale = new Vector3(scaleSave.x / 2, scaleSave.y / 2, scaleSave.z / 2);
+            detectedSeaWeeds[0].localRotation = Quaternion.Euler(new Vector3(0, Random.Range(-135, 135), 0));
+            seaWeeds.Add(detectedSeaWeeds[0]);
+            detectedSeaWeeds[0].tag = "Untagged";
+            detectedSeaWeeds.RemoveAt(0);
+            return true;
+        }
+
+        else
+            return false;
 	}
 
 	//Called when the player 

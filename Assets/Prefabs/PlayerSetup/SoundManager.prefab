@@ -377,8 +377,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 1baa43908a0c9354e92a999236a540dd, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -708,4 +708,7 @@ MonoBehaviour:
   - {fileID: 82124791191867208}
   - {fileID: 82210408980841676}
   - {fileID: 82297980052255318}
+  flowSource: {fileID: 82730002288985440}
   pincer: {fileID: 8300000, guid: e6455d9c32cb66a47b192b2cfd980297, type: 3}
+  pincerAlgae: {fileID: 8300000, guid: c638546df58d83744920414d37f7163c, type: 3}
+  pincerRock: {fileID: 8300000, guid: 506bf411ffdae1a48a66c8332993fb09, type: 3}
