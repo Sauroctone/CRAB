@@ -5,10 +5,13 @@ using UnityEngine;
 public class Megadaptor : MonoBehaviour {
 	MegaShape shape;
 	Transform[] flowWaypoints;
+	public Mesh tunnelMesh;
 	bool once;
 	// Use this for initialization
 	void Start () 
 	{
+		MeshFilter meshFilter =  GetComponentInChildren<MeshFilter> ();
+		meshFilter.mesh = tunnelMesh;
 		shape = transform.GetComponent<MegaShape> ();
 		flowWaypoints = GetComponentInParent<FlowInstance> ().waypoints;
 

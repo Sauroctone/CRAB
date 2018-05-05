@@ -7,11 +7,12 @@ public class StateController : MonoBehaviour {
 	public Transform eyes;
 	public AI_State remainState;
 	public AI_Stats stats;
+	public List<Transform> wayPointList;
 
 	[HideInInspector]public PathFollower follower;
-	public List<Transform> wayPointList;
 	[HideInInspector] public int nextWayPoint;
 	[HideInInspector] public Transform chaseTarget;
+	[HideInInspector] public Vector3 lastSeenPosition;
 	[HideInInspector] public float stateTimeElapsed;
 	public Coroutine currentMovement;
 	bool aiActive;
@@ -51,6 +52,15 @@ public class StateController : MonoBehaviour {
 	private void OnExitState()
 	{
 		stateTimeElapsed = 0;
+	}
+
+	void OnDrawGizmos()
+	{
+		if (currentState != null && eyes != null) 
+		{
+			Gizmos.color = currentState.sceneGizmoColor;
+			Gizmos.DrawWireSphere (eyes.position, stats.radius);
+		}
 	}
 }
 

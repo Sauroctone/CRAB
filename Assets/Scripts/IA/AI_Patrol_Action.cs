@@ -12,12 +12,13 @@ public class AI_Patrol_Action : AI_Action
 
 	private void Patrol(StateController controller)
 	{
-		controller.follower.InitMovement (controller.transform.position, controller.wayPointList [controller.nextWayPoint].position, controller.stats.speed);
+		controller.follower.InitMovement (controller.transform.position, controller.wayPointList [controller.nextWayPoint].position, controller.stats.patrolSpeed);
 		/*controller.navMeshAgent.destination = controller.wayPointList [controller.nextWayPoint].position;
 		controller.navMeshAgent.Resume ();*/
 
 		if ((controller.transform.position - controller.wayPointList [controller.nextWayPoint].position).magnitude <= controller.stats.stopDistance) 
 		{
+			Debug.Log ("next");
 			controller.nextWayPoint = (controller.nextWayPoint + 1) % controller.wayPointList.Count;
 		}
 	}

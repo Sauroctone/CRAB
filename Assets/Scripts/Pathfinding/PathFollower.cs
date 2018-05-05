@@ -41,7 +41,6 @@ public class PathFollower : MonoBehaviour {
 	IEnumerator FollowPath()
 	{
 		Vector3 currentWaypoint = path [0];
-		print (path.Length);
 
 		while (true) 
 		{
@@ -57,6 +56,7 @@ public class PathFollower : MonoBehaviour {
 			}
 
 			transform.position = Vector3.MoveTowards (transform.position, currentWaypoint, speed);
+			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation (currentWaypoint - transform.position, Vector3.up), 0.01f);
 			yield return null;
 		}
 	}
