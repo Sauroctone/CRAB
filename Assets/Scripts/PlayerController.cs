@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 	public static bool isVisible = true;
@@ -150,6 +151,11 @@ public class PlayerController : MonoBehaviour {
 		}
     }
 		
+    public void Die()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 	//Input window for claws
 	IEnumerator ClawInput(Claw side)
 	{

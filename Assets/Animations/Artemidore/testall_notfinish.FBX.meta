@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 56a358f55dc26414b93573ac9f79c469
-timeCreated: 1525528892
+guid: 9ca0a79d853a4a643ab746b1212ef12d
+timeCreated: 1525538855
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -149,13 +149,11 @@ ModelImporter:
     400138: Point026
     400140: //RootNode
     400142: SM_Arty
-    2100000: No Name
-    2100002: 'Material #90'
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: B_Root
-    4300002: SM_Arty
-    7400000: WalkingBaked
+    2100000: 'Material #90'
+    4300000: SM_Arty
+    7400000: Walk
+    7400002: Idle
+    7400004: Swim
     9500000: //RootNode
     13700000: SM_Arty
   externalObjects: {}
@@ -186,7 +184,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: WalkingBaked
+      name: Walk
       takeName: Take 001
       firstFrame: 0
       lastFrame: 20
@@ -208,21 +206,63 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.5450237
-        functionName: OnLegDown
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.007109005
-        functionName: OnLegsDown
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 30
+      lastFrame: 300
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Swim
+      takeName: Take 001
+      firstFrame: 310
+      lastFrame: 350
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

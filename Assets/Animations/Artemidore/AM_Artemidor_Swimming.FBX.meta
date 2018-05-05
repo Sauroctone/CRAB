@@ -56,6 +56,27 @@ ModelImporter:
     100096: B_Root
     100098: Point026
     100100: SM_Arty
+    100102: B_Left_Arm_First_Clamp_end
+    100104: B_Left_Arm_First_end
+    100106: B_Left_Arm_Fourth_end
+    100108: B_Left_Arm_Last_end
+    100110: B_Left_Arm_Second_end
+    100112: B_Left_Arm_Third_end
+    100114: B_Left_Mandible_end
+    100116: B_Master_end
+    100118: B_Right_Antenna1_end
+    100120: B_Right_Antenna1_end(mirrored)
+    100122: B_Right_Antenna2_end
+    100124: B_Right_Antenna2_end(mirrored)
+    100126: B_Right_Antenna3_end
+    100128: B_Right_Antenna3_end(mirrored)
+    100130: B_Right_Arm_First_Clamp_end
+    100132: B_Right_Arm_First_end
+    100134: B_Right_Arm_Fourth_end
+    100136: B_Right_Arm_Last_end
+    100138: B_Right_Arm_Second_end
+    100140: B_Right_Arm_Third_end
+    100142: B_Right_Mandible_end
     400000: //RootNode
     400002: B_Left_Antenna1_1
     400004: B_Left_Antenna1_2
@@ -107,6 +128,27 @@ ModelImporter:
     400096: B_Root
     400098: Point026
     400100: SM_Arty
+    400102: B_Left_Arm_First_Clamp_end
+    400104: B_Left_Arm_First_end
+    400106: B_Left_Arm_Fourth_end
+    400108: B_Left_Arm_Last_end
+    400110: B_Left_Arm_Second_end
+    400112: B_Left_Arm_Third_end
+    400114: B_Left_Mandible_end
+    400116: B_Master_end
+    400118: B_Right_Antenna1_end
+    400120: B_Right_Antenna1_end(mirrored)
+    400122: B_Right_Antenna2_end
+    400124: B_Right_Antenna2_end(mirrored)
+    400126: B_Right_Antenna3_end
+    400128: B_Right_Antenna3_end(mirrored)
+    400130: B_Right_Arm_First_Clamp_end
+    400132: B_Right_Arm_First_end
+    400134: B_Right_Arm_Fourth_end
+    400136: B_Right_Arm_Last_end
+    400138: B_Right_Arm_Second_end
+    400140: B_Right_Arm_Third_end
+    400142: B_Right_Mandible_end
     2100000: 'Material #90'
     4300000: SM_Arty
     7400000: Take 001
@@ -138,7 +180,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
