@@ -49,7 +49,7 @@ public class WaterController : MonoBehaviour {
 			} 
 			else if (dirNum > 0 && PlayerController.rightClaw && !exiting)
 			{
-                soundMan.Play(soundMan.pincerRock, 0.1f);
+                soundMan.Play(soundMan.pincerRock, .7f, 0.1f);
                 StartCoroutine (flowInterface.ExitFlow ());
 				exiting = true;
 			}

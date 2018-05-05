@@ -6,6 +6,7 @@ public class SeaWeedManager : MonoBehaviour {
 	public Transform[] slots;
 	List<Transform> seaWeeds = new List<Transform>();
 	public List<Transform> detectedSeaWeeds;
+    public GameObject sandCloud;
 
 	Rigidbody rB;
 
@@ -27,6 +28,7 @@ public class SeaWeedManager : MonoBehaviour {
         //If a sea weed is detected when the function is called, it is set as a children and placed on a spot
         if (detectedSeaWeeds.Count != 0 && seaWeeds.Count < 3)
         {
+            Instantiate(sandCloud, detectedSeaWeeds[0].position, Quaternion.identity);
             detectedSeaWeeds[0].position = slots[seaWeeds.Count].position;
             detectedSeaWeeds[0].parent = slots[seaWeeds.Count];
             Vector3 scaleSave = detectedSeaWeeds[0].localScale;

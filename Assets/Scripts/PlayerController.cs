@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour {
     public SoundManager soundMan;
     public ParticleSystem leftMoveBubbles;
     public ParticleSystem rightMoveBubbles;
+    public FlowInterface flowInt;
+    public Animator anim;
 
     void Update ()
     {
@@ -79,13 +81,18 @@ public class PlayerController : MonoBehaviour {
 
 			movement = direction * speed;
 
-            //Bubble particles while moving
+            //Animation Bubble particles while moving
             if (movement != Vector3.zero)
             {
                 if (!leftMoveBubbles.isPlaying)
                     leftMoveBubbles.Play();
                 if (!rightMoveBubbles.isPlaying)
                     rightMoveBubbles.Play();
+                
+                if (!anim.GetBool("isMoving"))
+                {
+                    anim.SetBool("isMoving", true);
+                }
             }
 
             else
@@ -94,6 +101,11 @@ public class PlayerController : MonoBehaviour {
                     leftMoveBubbles.Stop();
                 if (rightMoveBubbles.isPlaying)
                     rightMoveBubbles.Stop();
+
+                if (anim.GetBool("isMoving"))
+                {
+                    anim.SetBool("isMoving", false);
+                }
             }
         }
 			
@@ -160,17 +172,17 @@ public class PlayerController : MonoBehaviour {
         if (hasSnipped)
         {
             if (leftClaw)
-                soundMan.Play(soundMan.pincerAlgae, 0.95f, 1.05f, -0.1f);
+                soundMan.Play(soundMan.pincerAlgae, 1f, 0.95f, 1.05f, -0.1f);
             else if (rightClaw)
-                soundMan.Play(soundMan.pincerAlgae, 0.95f, 1.05f, 0.1f);
+                soundMan.Play(soundMan.pincerAlgae, 1f, 0.95f, 1.05f, 0.1f);
         }
 
         else
         {
             if (leftClaw)
-                soundMan.Play(soundMan.pincer, 0.95f, 1.05f, -0.1f);
+                soundMan.Play(soundMan.pincer, 0.95f, 1f, 1.05f, -0.1f);
             else if (rightClaw)
-                soundMan.Play(soundMan.pincer, 0.95f, 1.05f, 0.1f);
+                soundMan.Play(soundMan.pincer, 0.95f, 1f, 1.05f, 0.1f);
         }
 
 
@@ -188,7 +200,7 @@ public class PlayerController : MonoBehaviour {
 		if (other.gameObject.tag == "Wall" && !onFloor) 
 		{
 			onFloor = true;
-		}
+        }
 	}
 
 	void OnCollisionExit(Collision other)

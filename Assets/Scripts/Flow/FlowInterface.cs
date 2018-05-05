@@ -11,6 +11,7 @@ public class FlowInterface : MonoBehaviour {
 	PlayerController playerController;
 	SeaWeedManager sW;
     public SoundManager soundMan;
+    public ParticleSystem impactCloud;
 
 	[Header("Detectors")]
 
@@ -129,6 +130,9 @@ public class FlowInterface : MonoBehaviour {
 	{
 		if (CheckClosestWaypoint() != null) 
 		{
+            impactCloud.Play();
+            playerController.anim.SetBool("isSwimming", true);
+
 			Transform detectedWaypoint = CheckClosestWaypoint ();
 			PlayerController.controlsAble = false;
 			//Get the detected flow & position on the path
@@ -192,11 +196,12 @@ public class FlowInterface : MonoBehaviour {
 		transform.parent = null;
 		Destroy (theFlowParent);
 		flowMovement = null;
+        playerController.anim.SetBool("isSwimming", false);
 
-		//Reset waterControl
+        //Reset waterControl
 
-		//Init lerp
-		GetComponent<Rigidbody>().velocity = new Vector3 (0,0,0);
+        //Init lerp
+        GetComponent<Rigidbody>().velocity = new Vector3 (0,0,0);
 		Vector3 originPosition = transform.position;
 		Quaternion originRotation = transform.rotation;
 		Vector3 rayDirection = detectedExitPoint.GetComponent<ExitPoint> ().GetExitTarget (transform) - transform.position;
@@ -226,9 +231,10 @@ public class FlowInterface : MonoBehaviour {
 
         soundMan.flowSource.Stop();
         soundMan.flowSource.volume = vol;
+        impactCloud.Play();
 
-		//Switch to not in flow mode
-		FlowMode(false);
+        //Switch to not in flow mode
+        FlowMode(false);
 		PlayerController.controlsAble = true;
 		waterControl.ResetFlow ();
 		currentFlow = null;
