@@ -26,13 +26,13 @@ public class AI_Look_Decision : AI_Decision {
 					&& hit.collider.CompareTag ("Player") && (PlayerController.isVisible || controller.chaseTarget == hit.transform)) 
 				{
 					controller.chaseTarget = hit.transform;
+					controller.lastSeenPosition = controller.chaseTarget.position;
 					return true;
 				} 
 				else 
 				{
 					if (controller.chaseTarget != null)
 					{
-						controller.lastSeenPosition = controller.chaseTarget.position;
 						controller.chaseTarget = null;
 					}
 					return false;
@@ -42,7 +42,6 @@ public class AI_Look_Decision : AI_Decision {
 
 		if (controller.chaseTarget != null) 
 		{
-			controller.lastSeenPosition = controller.chaseTarget.position;
 			controller.chaseTarget = null;
 		}
 		return false;

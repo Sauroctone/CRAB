@@ -7,44 +7,13 @@ public class AI_Search_Decision : AI_Decision {
 	public LayerMask layer;
 	public override bool Decide(StateController controller)
 	{
-		bool targetVisible = Look(controller);
-		return targetVisible;
+		bool noEnemyInSight = Search(controller);
+		return noEnemyInSight;
 	}
 
-	private bool Look(StateController controller)
+	private bool Search(StateController controller)
 	{
-		Vector3 eyePosition = controller.eyes.position;
-		Collider[] seenObjects = Physics.OverlapSphere(eyePosition, controller.stats.radius);
-		//Debug.Log (seenObjects.Length);
-
-		foreach (Collider c in seenObjects) 
-		{
-			if (c.tag == "Player") 
-			{
-				RaycastHit hit;
-				if (Physics.SphereCast (eyePosition, 0.5f, c.transform.position - eyePosition,  out hit, controller.stats.lookRange, layer)
-					&& hit.collider.CompareTag ("Player") && (PlayerController.isVisible || controller.chaseTarget == hit.transform)) 
-				{
-					controller.chaseTarget = hit.transform;
-					return true;
-				} 
-				else 
-				{
-					if (controller.chaseTarget != null)
-					{
-						controller.lastSeenPosition = controller.chaseTarget.position;
-						controller.chaseTarget = null;
-					}
-					return false;
-				}
-			} 
-		}
-
-		if (controller.chaseTarget != null) 
-		{
-			controller.lastSeenPosition = controller.chaseTarget.position;
-			controller.chaseTarget = null;
-		}
-		return false;
+		controller.eyeRotator.localRotation = Quaternion.Slerp(controller.eyeRotator.localRotation, Quaternion.Euler (0, Mathf.Sin (controller.stateTimeElapsed*controller.stats.searchRotationSpeed) * controller.stats.searchAngle, 0), 0.5f);
+		return controller.CheckIfCountDownElapsed (controller.stats.searchTime);
 	}
 }

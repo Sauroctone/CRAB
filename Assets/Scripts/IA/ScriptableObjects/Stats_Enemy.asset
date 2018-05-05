@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Name: Stats_Enemy
   m_EditorClassIdentifier: 
   patrolSpeed: 0.01
-  chaseSpeed: 0.05
   stopDistance: 2
-  radius: 5
-  lookRange: 5
+  patrolAngle: 10
+  patrolRotationSpeed: 0.5
+  chaseSpeed: 0.05
+  radius: 3
+  lookRange: 3
+  searchAngle: 45
+  searchRotationSpeed: 2
+  searchTime: 3

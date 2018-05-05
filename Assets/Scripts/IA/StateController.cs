@@ -5,11 +5,12 @@ using UnityEngine;
 public class StateController : MonoBehaviour {
 	public AI_State currentState;
 	public Transform eyes;
+	public Transform eyeRotator;
 	public AI_State remainState;
 	public AI_Stats stats;
 	public List<Transform> wayPointList;
 
-	[HideInInspector]public PathFollower follower;
+	[HideInInspector] public PathFollower follower;
 	[HideInInspector] public int nextWayPoint;
 	[HideInInspector] public Transform chaseTarget;
 	[HideInInspector] public Vector3 lastSeenPosition;
@@ -36,6 +37,7 @@ public class StateController : MonoBehaviour {
 
 	public void TransitionToState(AI_State nextState)
 	{
+		print (nextState);
 		if (nextState != remainState) 
 		{
 			currentState = nextState;
@@ -46,7 +48,7 @@ public class StateController : MonoBehaviour {
 	public bool CheckIfCountDownElapsed(float duration)
 	{
 		stateTimeElapsed += Time.deltaTime;
-		return (stateTimeElapsed == duration);
+		return (stateTimeElapsed >= duration);
 	}
 
 	private void OnExitState()

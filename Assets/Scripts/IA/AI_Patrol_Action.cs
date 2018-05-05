@@ -18,7 +18,6 @@ public class AI_Patrol_Action : AI_Action
 
 		if ((controller.transform.position - controller.wayPointList [controller.nextWayPoint].position).magnitude <= controller.stats.stopDistance) 
 		{
-			Debug.Log ("next");
 			controller.nextWayPoint = (controller.nextWayPoint + 1) % controller.wayPointList.Count;
 		}
 	}
