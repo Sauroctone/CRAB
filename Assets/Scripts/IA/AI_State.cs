@@ -13,7 +13,7 @@ public class AI_State : ScriptableObject
 	public void UpdateState(StateController controller)
 	{
 		DoActions (controller);
-		CheckTransitions (controller);
+		//CheckTransitions (controller);
 	}
 
 	private void DoActions(StateController controller)

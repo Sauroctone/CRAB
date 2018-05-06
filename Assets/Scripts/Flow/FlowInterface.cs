@@ -12,8 +12,10 @@ public class FlowInterface : MonoBehaviour {
 	SeaWeedManager sW;
     public SoundManager soundMan;
     public ParticleSystem impactCloud;
+    public ParticleSystem leftSwimBubbles;
+    public ParticleSystem rightSwimBubbles;
 
-	[Header("Detectors")]
+    [Header("Detectors")]
 
 	public GameObject flowDetector;
 	public GameObject exitDetector;
@@ -168,6 +170,9 @@ public class FlowInterface : MonoBehaviour {
 
 			transform.position = iTween.PointOnPath(targetFlow.waypoints, targetPercentage);
 
+            leftSwimBubbles.Play();
+            rightSwimBubbles.Play();
+
 			//Create flow parent
 			GameObject flowParent = new GameObject("FlowParent");
 			flowParent.transform.position = transform.position;
@@ -229,6 +234,8 @@ public class FlowInterface : MonoBehaviour {
             yield return new WaitForFixedUpdate ();
 		}
 
+        leftSwimBubbles.Stop();
+        rightSwimBubbles.Stop();
         soundMan.flowSource.Stop();
         soundMan.flowSource.volume = vol;
         impactCloud.Play();

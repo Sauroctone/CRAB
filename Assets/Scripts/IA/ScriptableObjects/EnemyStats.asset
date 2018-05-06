@@ -8,10 +8,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bb25ccc044e9904dbffc4f2418eb745, type: 3}
-  m_Name: State_Patrolling
+  m_Script: {fileID: 11500000, guid: fcd500a8a3446b9438347b0764fb2c38, type: 3}
+  m_Name: EnemyStats
   m_EditorClassIdentifier: 
-  actions:
-  - {fileID: 11400000, guid: 76379ebc5151d12419456b0339502f19, type: 2}
-  transitions: []
-  sceneGizmoColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  speed: 0.1
+  stopDistance: 1.5
