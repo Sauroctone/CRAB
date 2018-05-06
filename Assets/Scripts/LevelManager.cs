@@ -12,6 +12,6 @@ public class LevelManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		//Called obnly once
 	}
 }

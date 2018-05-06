@@ -11,9 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bb25ccc044e9904dbffc4f2418eb745, type: 3}
   m_Name: State_CommingToSound
   m_EditorClassIdentifier: 
-  actions: []
+  actions:
+  - {fileID: 11400000, guid: dfedad4ce950b2b4db32c12bda3f2dba, type: 2}
   transitions:
   - decision: {fileID: 11400000, guid: 2109d73903dd5894aa54cec36877d4c1, type: 2}
     trueState: {fileID: 11400000, guid: 781ff9c4375b6f74aa2daa252b30d2f8, type: 2}
+    falseState: {fileID: 11400000, guid: b7e1c7e8244e7834f8cfa6253726b5cd, type: 2}
+  - decision: {fileID: 11400000, guid: e42eca8a390196f4d80e5802cfa83078, type: 2}
+    trueState: {fileID: 11400000, guid: 47ba14efcc4a3ac428d6dae0b9d2d28f, type: 2}
     falseState: {fileID: 11400000, guid: b7e1c7e8244e7834f8cfa6253726b5cd, type: 2}
   sceneGizmoColor: {r: 1, g: 0.88235295, b: 0, a: 1}
