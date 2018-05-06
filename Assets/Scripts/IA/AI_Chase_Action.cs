@@ -13,6 +13,7 @@ public class AI_Chase_Action : AI_Action
 	private void Patrol(StateController controller)
 	{
 		controller.follower.InitMovement (controller.transform.position, controller.chaseTarget.position, controller.stats.chaseSpeed);
+		controller.eyeRotator.localRotation = Quaternion.Slerp(controller.eyeRotator.localRotation, Quaternion.Euler (0, 0, 0), 0.001f);
 		/*controller.navMeshAgent.destination = controller.wayPointList [controller.nextWayPoint].position;
 		controller.navMeshAgent.Resume ();*/
 	}

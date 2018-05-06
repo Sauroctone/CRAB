@@ -8,6 +8,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82865929b1225f742a302bafb9ffd549, type: 3}
-  m_Name: Action_Rotate
+  m_Script: {fileID: 11500000, guid: e1375be105362c642a6f6e6b1de0bf15, type: 3}
+  m_Name: Decision_Attack
   m_EditorClassIdentifier: 
+  layer:
+    serializedVersion: 2
+    m_Bits: 0

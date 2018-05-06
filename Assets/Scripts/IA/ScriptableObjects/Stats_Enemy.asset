@@ -13,11 +13,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patrolSpeed: 0.01
   stopDistance: 2
-  patrolAngle: 10
-  patrolRotationSpeed: 0.5
-  chaseSpeed: 0.05
+  patrolAngle: 20
+  patrolRotationSpeed: 1
+  chaseSpeed: 0.02
+  chaseRadius: 5
+  attackRadius: 4
+  attackCooldown: 3
+  attackTime: 1
+  attackSpeed: 3
+  attackCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0.0011148273
+      value: 0.0034839204
+      inSlope: 0.06317271
+      outSlope: 0.06317271
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.39384934
+      value: 0.005939387
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0.99823
+      inSlope: 3.9273245
+      outSlope: 3.9273245
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  offset: 1
   radius: 3
   lookRange: 3
   searchAngle: 45
   searchRotationSpeed: 2
-  searchTime: 3
+  searchTime: 6

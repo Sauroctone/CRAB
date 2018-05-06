@@ -12,6 +12,15 @@ public class AI_Stats : ScriptableObject {
 
 	[Header("Chase")]
 	public float chaseSpeed;
+	public float chaseRadius;
+
+	[Header("Attack")]
+	public float attackRadius;
+	public float attackCooldown;
+	public float attackTime;
+	public float attackSpeed;
+	public AnimationCurve attackCurve;
+	public float offset;
 
 	[Header("Detection")]
 	public float radius;

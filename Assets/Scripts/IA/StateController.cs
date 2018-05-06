@@ -5,6 +5,7 @@ using UnityEngine;
 public class StateController : MonoBehaviour {
 	public AI_State currentState;
 	public Transform eyes;
+	public Transform mouth;
 	public Transform eyeRotator;
 	public AI_State remainState;
 	public AI_Stats stats;
@@ -13,6 +14,7 @@ public class StateController : MonoBehaviour {
 	[HideInInspector] public PathFollower follower;
 	[HideInInspector] public int nextWayPoint;
 	[HideInInspector] public Transform chaseTarget;
+	[HideInInspector] public Vector3 attackTargetPosition;
 	[HideInInspector] public Vector3 lastSeenPosition;
 	[HideInInspector] public float stateTimeElapsed;
 	public Coroutine currentMovement;
@@ -37,7 +39,6 @@ public class StateController : MonoBehaviour {
 
 	public void TransitionToState(AI_State nextState)
 	{
-		print (nextState);
 		if (nextState != remainState) 
 		{
 			currentState = nextState;
