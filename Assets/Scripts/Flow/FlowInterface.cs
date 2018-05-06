@@ -10,6 +10,8 @@ public class FlowInterface : MonoBehaviour {
 	WaterController waterControl;
 	PlayerController playerController;
 	SeaWeedManager sW;
+    public SoundManager soundMan;
+    public ParticleSystem impactCloud;
 
 	[Header("Detectors")]
 
@@ -128,6 +130,9 @@ public class FlowInterface : MonoBehaviour {
 	{
 		if (CheckClosestWaypoint() != null) 
 		{
+            impactCloud.Play();
+            playerController.anim.SetBool("isSwimming", true);
+
 			Transform detectedWaypoint = CheckClosestWaypoint ();
 			PlayerController.controlsAble = false;
 			//Get the detected flow & position on the path
@@ -144,12 +149,20 @@ public class FlowInterface : MonoBehaviour {
 			//Resets local rotation of the mesh inside the player
 			StartCoroutine (playerController.ResetMeshRotation ());
 
+            float vol = soundMan.flowSource.volume;
 			//Lerp towards target point on the path
 			for (float i = 0; i < 1; i+= Time.deltaTime*inSpeed)
 			{
 				transform.position = Vector3.Lerp(originPosition, iTween.PointOnPath(targetFlow.waypoints, targetPercentage), joiningCurve.Evaluate(i));
 				transform.rotation = Quaternion.LookRotation (transform.forward, upDirection);
-			
+
+                //Lerp in the flow sound
+
+                if (!soundMan.flowSource.isPlaying)
+                    soundMan.flowSource.Play();
+
+                soundMan.flowSource.volume = Mathf.Lerp(0f, vol, i);
+
 				yield return new WaitForFixedUpdate();
 			}
 
@@ -183,11 +196,12 @@ public class FlowInterface : MonoBehaviour {
 		transform.parent = null;
 		Destroy (theFlowParent);
 		flowMovement = null;
+        playerController.anim.SetBool("isSwimming", false);
 
-		//Reset waterControl
+        //Reset waterControl
 
-		//Init lerp
-		GetComponent<Rigidbody>().velocity = new Vector3 (0,0,0);
+        //Init lerp
+        GetComponent<Rigidbody>().velocity = new Vector3 (0,0,0);
 		Vector3 originPosition = transform.position;
 		Quaternion originRotation = transform.rotation;
 		Vector3 rayDirection = detectedExitPoint.GetComponent<ExitPoint> ().GetExitTarget (transform) - transform.position;
@@ -201,16 +215,26 @@ public class FlowInterface : MonoBehaviour {
 		}
 
 		PlayerController.inFlow = false;
-		//Lerp & Slerp
-		for (float i = 0; i < 1; i+=Time.deltaTime*outSpeed)
+        //Lerp & Slerp
+        float vol = soundMan.flowSource.volume;
+        for (float i = 0; i < 1; i+=Time.deltaTime*outSpeed)
 		{
 			//transform.position = Vector3.Lerp(originPosition, targetPosition, exitCurve.Evaluate(i));
 			transform.rotation = Quaternion.Slerp (originRotation, targetRotation, exitCurve.Evaluate (i));
-			yield return new WaitForFixedUpdate ();
+
+            //Lerp in the flow sound
+
+            soundMan.flowSource.volume = Mathf.Lerp(vol, 0f, i);
+
+            yield return new WaitForFixedUpdate ();
 		}
 
-		//Switch to not in flow mode
-		FlowMode(false);
+        soundMan.flowSource.Stop();
+        soundMan.flowSource.volume = vol;
+        impactCloud.Play();
+
+        //Switch to not in flow mode
+        FlowMode(false);
 		PlayerController.controlsAble = true;
 		waterControl.ResetFlow ();
 		currentFlow = null;

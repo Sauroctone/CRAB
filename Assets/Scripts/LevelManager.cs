@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour {
-
+	public bool called;
+	public Transform horn;
 	// Use this for initialization
 	void Start () {
 		

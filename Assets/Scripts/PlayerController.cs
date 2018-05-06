@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 	public static bool isVisible = true;
@@ -45,6 +46,8 @@ public class PlayerController : MonoBehaviour {
     public SoundManager soundMan;
     public ParticleSystem leftMoveBubbles;
     public ParticleSystem rightMoveBubbles;
+    public FlowInterface flowInt;
+    public Animator anim;
 
     void Update ()
     {
@@ -79,13 +82,18 @@ public class PlayerController : MonoBehaviour {
 
 			movement = direction * speed;
 
-            //Bubble particles while moving
+            //Animation Bubble particles while moving
             if (movement != Vector3.zero)
             {
                 if (!leftMoveBubbles.isPlaying)
                     leftMoveBubbles.Play();
                 if (!rightMoveBubbles.isPlaying)
                     rightMoveBubbles.Play();
+                
+                if (!anim.GetBool("isMoving"))
+                {
+                    anim.SetBool("isMoving", true);
+                }
             }
 
             else
@@ -94,6 +102,11 @@ public class PlayerController : MonoBehaviour {
                     leftMoveBubbles.Stop();
                 if (rightMoveBubbles.isPlaying)
                     rightMoveBubbles.Stop();
+
+                if (anim.GetBool("isMoving"))
+                {
+                    anim.SetBool("isMoving", false);
+                }
             }
         }
 			
@@ -138,6 +151,11 @@ public class PlayerController : MonoBehaviour {
 		}
     }
 		
+    public void Die()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 	//Input window for claws
 	IEnumerator ClawInput(Claw side)
 	{
@@ -145,21 +163,34 @@ public class PlayerController : MonoBehaviour {
         {
 			leftClaw = true;
 			leftPressed = true;
-
-            soundMan.Play(soundMan.pincer, 0.95f, 1.05f, -0.1f);
-            print("gauche");
+            //print("gauche");
         }
 
         else
         {
 			rightClaw = true;
 			rightPressed = true;
-
-            soundMan.Play(soundMan.pincer, 0.95f, 1.05f, 0.1f);
-            print("droite");
+            //print("droite");
         }
 			
-		sW.OnClaw (side);
+		bool hasSnipped = sW.OnClaw (side);
+
+        if (hasSnipped)
+        {
+            if (leftClaw)
+                soundMan.Play(soundMan.pincerAlgae, 1f, 0.95f, 1.05f, -0.1f);
+            else if (rightClaw)
+                soundMan.Play(soundMan.pincerAlgae, 1f, 0.95f, 1.05f, 0.1f);
+        }
+
+        else
+        {
+            if (leftClaw)
+                soundMan.Play(soundMan.pincer, 0.95f, 1f, 1.05f, -0.1f);
+            else if (rightClaw)
+                soundMan.Play(soundMan.pincer, 0.95f, 1f, 1.05f, 0.1f);
+        }
+
 
 		yield return new WaitForSeconds (clawCooldown);
 
@@ -175,7 +206,7 @@ public class PlayerController : MonoBehaviour {
 		if (other.gameObject.tag == "Wall" && !onFloor) 
 		{
 			onFloor = true;
-		}
+        }
 	}
 
 	void OnCollisionExit(Collision other)

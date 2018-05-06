@@ -812,7 +812,7 @@ public class MegaShapeEditor : Editor
 		bool mouseup = false;
 		bool recalc = false;
 
-		if ( Event.current.type == EventType.mouseUp )
+		if ( Event.current.type == EventType.MouseUp )
 		{
 			mouseup = true;
 			recalc = true;
@@ -823,13 +823,13 @@ public class MegaShapeEditor : Editor
 			dragging = false;
 		}
 
-		if ( Event.current.type == EventType.mouseDown )
+		if ( Event.current.type == EventType.MouseDown )
 		{
 
 		}
 
 
-		if ( Event.current.type == EventType.mouseDrag && Event.current.button == 0 )
+		if ( Event.current.type == EventType.MouseDrag && Event.current.button == 0 )
 		{
 			dragging = true;
 		}
