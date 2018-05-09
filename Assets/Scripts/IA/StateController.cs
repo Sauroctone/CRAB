@@ -19,7 +19,7 @@ public class StateController : MonoBehaviour {
 	[HideInInspector] public Vector3 lastSeenPosition;
 	[HideInInspector] public float stateTimeElapsed;
 	public Coroutine currentMovement;
-	bool aiActive;
+	public bool aiActive;
 	// Use this for initialization
 	void Start () {
 		SetupIA ();
@@ -43,7 +43,6 @@ public class StateController : MonoBehaviour {
 		if (nextState != remainState) 
 		{
 			currentState = nextState;
-			//ResetPath ();
 			OnExitState ();
 		}
 	}
