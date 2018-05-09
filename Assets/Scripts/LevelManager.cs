@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour {
 	public bool called;
 	public Transform horn;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -13,5 +14,12 @@ public class LevelManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//Called obnly once
+	}
+
+	public IEnumerator HornCall()
+	{
+		called = true;
+		yield return null;
+		called = false;
 	}
 }
