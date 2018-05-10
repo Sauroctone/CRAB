@@ -17,6 +17,8 @@ public class AI_Stats : ScriptableObject {
 	public float lookRange;
 	public float patrolRotationSpeed;
 	public float patrolAngle;
+	public float patrolSpeed;
+	public float stopDistance;
 
 	[Header("Search")]
 	public float searchTime;
@@ -26,6 +28,4 @@ public class AI_Stats : ScriptableObject {
 	[Header("Chase")]
 	public float chaseSpeed;
 
-	public float speed;
-	public float stopDistance;
 }

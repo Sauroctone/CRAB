@@ -879,8 +879,9 @@ GameObject:
   - component: {fileID: 4415433748991340}
   - component: {fileID: 114445862655727020}
   - component: {fileID: 136062640354732318}
+  - component: {fileID: 114752492090729528}
   m_Layer: 0
-  m_Name: SeaWeedDetector
+  m_Name: SnipDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4678,6 +4679,19 @@ MonoBehaviour:
   - {fileID: 4153491832596884}
   detectedSeaWeeds: []
   sandCloud: {fileID: 1354833035544048, guid: ffbb2ad8b0a273e4e9a090306ba7b929, type: 2}
+--- !u!114 &114752492090729528
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1548561536855942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc42347136eccfd4da8073ed67cd4af2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horn: {fileID: 0}
+  levelManager: {fileID: 0}
 --- !u!114 &114786725349868618
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4762,6 +4776,7 @@ MonoBehaviour:
   clawCooldown: 0
   rb: {fileID: 54350007487400318}
   sW: {fileID: 114445862655727020}
+  hrnD: {fileID: 114752492090729528}
   soundMan: {fileID: 114038563971880566}
   leftMoveBubbles: {fileID: 198289511512714928}
   rightMoveBubbles: {fileID: 198542864168774630}

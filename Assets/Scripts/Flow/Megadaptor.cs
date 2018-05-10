@@ -5,10 +5,13 @@ using UnityEngine;
 public class Megadaptor : MonoBehaviour {
 	MegaShape shape;
 	Transform[] flowWaypoints;
+	public Mesh mesh;
+	public MeshFilter meshF;
 	bool once;
 	// Use this for initialization
 	void Start () 
 	{
+		meshF.mesh = mesh;
 		shape = transform.GetComponent<MegaShape> ();
 		flowWaypoints = GetComponentInParent<FlowInstance> ().waypoints;
 
@@ -22,9 +25,8 @@ public class Megadaptor : MonoBehaviour {
 		MegaWorldPathDeform deform = GetComponentInChildren<MegaWorldPathDeform> ();
 		deform.stretch = stretchValue;
 
-
-
 	}
+		
 	
 	// Update is called once per frame
 	void Update () {
@@ -34,4 +36,5 @@ public class Megadaptor : MonoBehaviour {
 			once = true;
 		}
 	}
+
 }

@@ -9,20 +9,11 @@ public class PathFollower : MonoBehaviour {
 	public float speed;
 	public StateController controller;
 	public AI_State chasingState;
+	public LayerMask playerLayer;
 	Vector3[] path;
 	int targetIndex;
 	public Coroutine currentMovement;
 	Coroutine currentAttack;
-
-
-	void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.A)) {
-			path = (pathfinding.FindPath (transform.position, target.position));
-			StartCoroutine ("FollowPath");
-		}
-
-	}
 
 	public void InitMovement(Vector3 startPosition, Vector3 targetPosition, float _speed)
 	{
@@ -85,12 +76,13 @@ public class PathFollower : MonoBehaviour {
 
 	IEnumerator AttackCoroutine()
 	{
-		print("Attack");
+		//Init
 		Vector3 target = controller.attackTargetPosition;
 		Vector3 origin = transform.position;
 		Vector3 direction = (target - origin).normalized; 
 		target -= direction * controller.stats.offset;
 
+		//Dash in
 		for (float i = 0; i < 1; i+= Time.deltaTime*controller.stats.attackSpeed)
 		{
 			transform.position = Vector3.Lerp(origin, target, controller.stats.attackCurve.Evaluate(i));
@@ -98,6 +90,20 @@ public class PathFollower : MonoBehaviour {
 			yield return new WaitForFixedUpdate();
 		}
 
+		//Check hit
+		Collider[] attackable = Physics.OverlapSphere(controller.mouth.position, controller.stats.attackRadius, playerLayer);
+
+		foreach (Collider c in attackable) 
+		{
+			if (c.tag == "Player") 
+			{
+				PlayerController playerC = c.GetComponentInParent<PlayerController> ();
+				playerC.StartCoroutine (playerC.Die ());
+				controller.aiActive = false;
+			}
+		}
+
+		//Dash out
 		origin -= direction * 0.5f;
 
 		for (float i = 1; i > 0; i-= Time.deltaTime*controller.stats.attackSpeed)
@@ -107,9 +113,6 @@ public class PathFollower : MonoBehaviour {
 			yield return new WaitForFixedUpdate();
 		}
 
-		//lerp to closest valide node
-
-		print ("end");
 		currentAttack = null;
 	}
 }

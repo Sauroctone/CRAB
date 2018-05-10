@@ -18,6 +18,8 @@ public class StateController : MonoBehaviour {
 	[HideInInspector] public Vector3 attackTargetPosition;
 	[HideInInspector] public Vector3 lastSeenPosition;
 	[HideInInspector] public float stateTimeElapsed;
+	/*[HideInInspector] */public List<Collider> seenObjects;
+
 	public Coroutine currentMovement;
 	public bool aiActive;
 	// Use this for initialization
@@ -44,6 +46,7 @@ public class StateController : MonoBehaviour {
 		{
 			currentState = nextState;
 			OnExitState ();
+			ResetPath ();
 		}
 	}
 
@@ -61,7 +64,7 @@ public class StateController : MonoBehaviour {
 	private void ResetPath()
 	{
 		if (follower.currentMovement!=null)
-			StopCoroutine (follower.currentMovement);
+			follower.StopCoroutine (follower.currentMovement);
 		
 		follower.ResetCoroutine ();
 	}

@@ -14,10 +14,8 @@ public class AI_Look_Decision : AI_Decision {
 	private bool Look(StateController controller)
 	{
 		Vector3 eyePosition = controller.eyes.position;
-		Collider[] seenObjects = Physics.OverlapSphere(eyePosition, controller.stats.radius);
-		//Debug.Log (seenObjects.Length);
 
-		foreach (Collider c in seenObjects) 
+		foreach (Collider c in controller.seenObjects) 
 		{
 			
 			if (c.tag == "Player") 

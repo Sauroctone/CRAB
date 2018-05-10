@@ -43,11 +43,17 @@ public class PlayerController : MonoBehaviour {
 
     public Rigidbody rb;
 	public SeaWeedManager sW;
+	public HornDetection hrnD;
     public SoundManager soundMan;
     public ParticleSystem leftMoveBubbles;
     public ParticleSystem rightMoveBubbles;
     public FlowInterface flowInt;
     public Animator anim;
+
+	[Header("Death")]
+
+	public float deathTime;
+
 
     void Update ()
     {
@@ -150,13 +156,20 @@ public class PlayerController : MonoBehaviour {
          
 		}
     }
-		
-    public void Die()
+
+
+	/// /////////////////////////////////////Death Coroutine
+	public IEnumerator Die()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		PlayerController.controlsAble = false;
+		//Anim + sound
+		yield return new WaitForSeconds(deathTime);
+
+		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+
     }
 
-	//Input window for claws
+	///////////////////////////////////////Input window for claws
 	IEnumerator ClawInput(Claw side)
 	{
 		if (side == Claw.Left)
@@ -174,6 +187,7 @@ public class PlayerController : MonoBehaviour {
         }
 			
 		bool hasSnipped = sW.OnClaw (side);
+		hrnD.OnClaw (side);
 
         if (hasSnipped)
         {

@@ -5,21 +5,34 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour {
 	public bool called;
 	public Transform horn;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		//Called obnly once
-	}
+	public GameObject exitFlow;
 
 	public IEnumerator HornCall()
 	{
 		called = true;
-		yield return null;
+		yield return new WaitForSeconds (0.5f);
 		called = false;
+
+		//Play sound
+
+		exitFlow.SetActive (true);
 	}
+
+	private IEnumerator EndLevel()
+	{
+		yield return null;
+		print ("The end");
+
+	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.tag == "Player") 
+		{
+			//End level
+			StartCoroutine(EndLevel());
+
+		}
+	}
+
 }
