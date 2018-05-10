@@ -17,11 +17,11 @@ TagManager:
   - 
   - 
   - Wall
-  - Unwalkable
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - FogVolumeShadowCaster
+  - FogVolume
+  - FogVolumeSurrogate
+  - FogVolumeUniform
   - 
   - 
   - 

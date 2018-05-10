@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 	public static bool isVisible = true;
@@ -34,62 +35,80 @@ public class PlayerController : MonoBehaviour {
 	bool leftPressed;
 	bool rightPressed;
 	public enum Claw {Left, Right};
-	public float inputWindow;
-	Coroutine inputCoroutine;
-
+	public float clawCooldown;
+	Coroutine leftPincerCor;
+    Coroutine rightPincerCor;
 
     [Header("References")]
 
     public Rigidbody rb;
 	public SeaWeedManager sW;
+    public SoundManager soundMan;
+    public ParticleSystem leftMoveBubbles;
+    public ParticleSystem rightMoveBubbles;
+    public FlowInterface flowInt;
+    public Animator anim;
 
-
-	void Start()
-	{
-		
-	}
-
-	void Update ()
+    void Update ()
     {
-        //Calculate the direction vector based on inputs
 		if (controlsAble) 
 		{
-			//Check claws
-			if (Input.GetAxisRaw ("LeftClaw") > inputTrigger && !leftClaw && !leftPressed) 
-			{
-				if (inputCoroutine != null)
-					StopCoroutine (inputCoroutine);
-				
-				inputCoroutine = StartCoroutine(ClawInput(Claw.Left));
-			}
+            //Check claws
+            if (Input.GetAxisRaw("LeftClaw") > 0 && !leftClaw && !leftPressed)
+            {
+                StartCoroutine(ClawInput(Claw.Left));
+            }
 
-			if (Input.GetAxisRaw ("RightClaw") > inputTrigger && !rightClaw && !rightPressed) 
-			{
-				if (inputCoroutine != null)
-					StopCoroutine (inputCoroutine);
-				
-				inputCoroutine = StartCoroutine(ClawInput(Claw.Right));
-			}
+            if (Input.GetAxisRaw("RightClaw") > 0 && !rightClaw && !rightPressed)
+            {
+                StartCoroutine(ClawInput(Claw.Right));
+            }
 
-			if (Input.GetAxisRaw ("LeftClaw") < inputTrigger && leftPressed) 
-			{
-				leftPressed = false;
-				if (inputCoroutine != null)
-					StopCoroutine (inputCoroutine);
-			}
+            if (Input.GetAxisRaw("LeftClaw") == 0 && leftPressed)
+            {
+                leftPressed = false;
+            }
 
-			if (Input.GetAxisRaw ("RightClaw") < inputTrigger && rightPressed) 
-			{
-				rightPressed = false;
-			}
+            if (Input.GetAxisRaw("RightClaw") == 0 && rightPressed)
+            {
+                rightPressed = false;
+            }
 
-			hinput = Input.GetAxisRaw ("Horizontal");
+            //Calculate the direction vector based on inputs
+            hinput = Input.GetAxisRaw ("Horizontal");
 			vinput = Input.GetAxisRaw ("Vertical");
 
 			direction = new Vector3 (hinput, 0f, vinput).normalized;
 
 			movement = direction * speed;
-		}
+
+            //Animation Bubble particles while moving
+            if (movement != Vector3.zero)
+            {
+                if (!leftMoveBubbles.isPlaying)
+                    leftMoveBubbles.Play();
+                if (!rightMoveBubbles.isPlaying)
+                    rightMoveBubbles.Play();
+                
+                if (!anim.GetBool("isMoving"))
+                {
+                    anim.SetBool("isMoving", true);
+                }
+            }
+
+            else
+            {
+                if (leftMoveBubbles.isPlaying)
+                    leftMoveBubbles.Stop();
+                if (rightMoveBubbles.isPlaying)
+                    rightMoveBubbles.Stop();
+
+                if (anim.GetBool("isMoving"))
+                {
+                    anim.SetBool("isMoving", false);
+                }
+            }
+        }
 			
     }
 
@@ -128,31 +147,57 @@ public class PlayerController : MonoBehaviour {
 			{
 				rb.velocity += -transform.up*falseGravity;
 			}
+         
 		}
     }
 		
+    public void Die()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 	//Input window for claws
 	IEnumerator ClawInput(Claw side)
 	{
-		print ("clawinput");
-		if (side == Claw.Left) {
+		if (side == Claw.Left)
+        {
 			leftClaw = true;
 			leftPressed = true;
-		} else {
+            //print("gauche");
+        }
+
+        else
+        {
 			rightClaw = true;
 			rightPressed = true;
-		}
+            //print("droite");
+        }
 			
-		sW.OnClaw (side);
+		bool hasSnipped = sW.OnClaw (side);
 
-		yield return new WaitForSeconds (inputWindow);
+        if (hasSnipped)
+        {
+            if (leftClaw)
+                soundMan.Play(soundMan.pincerAlgae, 1f, 0.95f, 1.05f, -0.1f);
+            else if (rightClaw)
+                soundMan.Play(soundMan.pincerAlgae, 1f, 0.95f, 1.05f, 0.1f);
+        }
+
+        else
+        {
+            if (leftClaw)
+                soundMan.Play(soundMan.pincer, 0.95f, 1f, 1.05f, -0.1f);
+            else if (rightClaw)
+                soundMan.Play(soundMan.pincer, 0.95f, 1f, 1.05f, 0.1f);
+        }
+
+
+		yield return new WaitForSeconds (clawCooldown);
 
 		if (side == Claw.Left) 
 			leftClaw = false;
 		else 
 			rightClaw = false;
-
-		inputCoroutine = null;
 	}
 
 	//////////////Updates a boolean tracking if the player is touching the floor or not
@@ -161,7 +206,7 @@ public class PlayerController : MonoBehaviour {
 		if (other.gameObject.tag == "Wall" && !onFloor) 
 		{
 			onFloor = true;
-		}
+        }
 	}
 
 	void OnCollisionExit(Collision other)
@@ -182,8 +227,9 @@ public class PlayerController : MonoBehaviour {
 		Vector3 left = Vector3.Cross (forward,normal);
 		Vector3 newForward = Vector3.Cross (normal,left);
 
-		//new rotation thanks to normal and forward
-		Quaternion newRotation = Quaternion.LookRotation (newForward, normal);
+        //new rotation thanks to normal and forward
+
+        Quaternion newRotation = Quaternion.LookRotation (newForward, normal);
 
 		return newRotation;
 	}
