@@ -177,6 +177,7 @@ public class PlayerController : MonoBehaviour {
 			leftClaw = true;
 			leftPressed = true;
             //print("gauche");
+            anim.SetTrigger("snapsLeft");
         }
 
         else
@@ -184,6 +185,7 @@ public class PlayerController : MonoBehaviour {
 			rightClaw = true;
 			rightPressed = true;
             //print("droite");
+            anim.SetTrigger("snapsRight");
         }
 			
 		bool hasSnipped = sW.OnClaw (side);

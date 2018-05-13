@@ -1,0 +1,264 @@
+fileFormatVersion: 2
+guid: d3056e666017e06449b35596712ea999
+timeCreated: 1526206526
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: B_Left_Antenna1_1
+    100004: B_Left_Antenna1_2
+    100006: B_Left_Antenna2_1
+    100008: B_Left_Antenna2_2
+    100010: B_Left_Antenna2_3
+    100012: B_Left_Antenna3_1
+    100014: B_Left_Antenna3_2
+    100016: B_Left_Antenna3_3
+    100018: B_Left_Arm_First_1
+    100020: B_Left_Arm_First_2
+    100022: B_Left_Arm_First_Clamp_1
+    100024: B_Left_Arm_First_Clamp_2
+    100026: B_Left_Arm_First_Clamp_end
+    100028: B_Left_Arm_First_end
+    100030: B_Left_Arm_Fourth_1
+    100032: B_Left_Arm_Fourth_3
+    100034: B_Left_Arm_Fourth_end
+    100036: B_Left_Arm_Last_1
+    100038: B_Left_Arm_Last_2
+    100040: B_Left_Arm_Last_3
+    100042: B_Left_Arm_Last_end
+    100044: B_Left_Arm_Second_1
+    100046: B_Left_Arm_Second_3
+    100048: B_Left_Arm_Second_end
+    100050: B_Left_Arm_Third_1
+    100052: B_Left_Arm_Third_3
+    100054: B_Left_Arm_Third_end
+    100056: B_Left_Mandible_1
+    100058: B_Left_Mandible_2
+    100060: B_Left_Mandible_end
+    100062: B_Master
+    100064: B_Master_end
+    100066: B_Right_Antenna1_1
+    100068: B_Right_Antenna1_2
+    100070: B_Right_Antenna1_end
+    100072: B_Right_Antenna1_end(mirrored)
+    100074: B_Right_Antenna2_1
+    100076: B_Right_Antenna2_2
+    100078: B_Right_Antenna2_3
+    100080: B_Right_Antenna2_end
+    100082: B_Right_Antenna2_end(mirrored)
+    100084: B_Right_Antenna3_1
+    100086: B_Right_Antenna3_2
+    100088: B_Right_Antenna3_3
+    100090: B_Right_Antenna3_end
+    100092: B_Right_Antenna3_end(mirrored)
+    100094: B_Right_Arm_First_1
+    100096: B_Right_Arm_First_2
+    100098: B_Right_Arm_First_Clamp_1
+    100100: B_Right_Arm_First_Clamp_2
+    100102: B_Right_Arm_First_Clamp_end
+    100104: B_Right_Arm_First_end
+    100106: B_Right_Arm_Fourth_1
+    100108: B_Right_Arm_Fourth_3
+    100110: B_Right_Arm_Fourth_end
+    100112: B_Right_Arm_Last_1
+    100114: B_Right_Arm_Last_2
+    100116: B_Right_Arm_Last_3
+    100118: B_Right_Arm_Last_end
+    100120: B_Right_Arm_Second_1
+    100122: B_Right_Arm_Second_3
+    100124: B_Right_Arm_Second_end
+    100126: B_Right_Arm_Third_1
+    100128: B_Right_Arm_Third_3
+    100130: B_Right_Arm_Third_end
+    100132: B_Right_Mandible_1
+    100134: B_Right_Mandible_2
+    100136: B_Right_Mandible_end
+    100138: B_Root
+    100140: Point026
+    100142: SM_Arty
+    400000: //RootNode
+    400002: B_Left_Antenna1_1
+    400004: B_Left_Antenna1_2
+    400006: B_Left_Antenna2_1
+    400008: B_Left_Antenna2_2
+    400010: B_Left_Antenna2_3
+    400012: B_Left_Antenna3_1
+    400014: B_Left_Antenna3_2
+    400016: B_Left_Antenna3_3
+    400018: B_Left_Arm_First_1
+    400020: B_Left_Arm_First_2
+    400022: B_Left_Arm_First_Clamp_1
+    400024: B_Left_Arm_First_Clamp_2
+    400026: B_Left_Arm_First_Clamp_end
+    400028: B_Left_Arm_First_end
+    400030: B_Left_Arm_Fourth_1
+    400032: B_Left_Arm_Fourth_3
+    400034: B_Left_Arm_Fourth_end
+    400036: B_Left_Arm_Last_1
+    400038: B_Left_Arm_Last_2
+    400040: B_Left_Arm_Last_3
+    400042: B_Left_Arm_Last_end
+    400044: B_Left_Arm_Second_1
+    400046: B_Left_Arm_Second_3
+    400048: B_Left_Arm_Second_end
+    400050: B_Left_Arm_Third_1
+    400052: B_Left_Arm_Third_3
+    400054: B_Left_Arm_Third_end
+    400056: B_Left_Mandible_1
+    400058: B_Left_Mandible_2
+    400060: B_Left_Mandible_end
+    400062: B_Master
+    400064: B_Master_end
+    400066: B_Right_Antenna1_1
+    400068: B_Right_Antenna1_2
+    400070: B_Right_Antenna1_end
+    400072: B_Right_Antenna1_end(mirrored)
+    400074: B_Right_Antenna2_1
+    400076: B_Right_Antenna2_2
+    400078: B_Right_Antenna2_3
+    400080: B_Right_Antenna2_end
+    400082: B_Right_Antenna2_end(mirrored)
+    400084: B_Right_Antenna3_1
+    400086: B_Right_Antenna3_2
+    400088: B_Right_Antenna3_3
+    400090: B_Right_Antenna3_end
+    400092: B_Right_Antenna3_end(mirrored)
+    400094: B_Right_Arm_First_1
+    400096: B_Right_Arm_First_2
+    400098: B_Right_Arm_First_Clamp_1
+    400100: B_Right_Arm_First_Clamp_2
+    400102: B_Right_Arm_First_Clamp_end
+    400104: B_Right_Arm_First_end
+    400106: B_Right_Arm_Fourth_1
+    400108: B_Right_Arm_Fourth_3
+    400110: B_Right_Arm_Fourth_end
+    400112: B_Right_Arm_Last_1
+    400114: B_Right_Arm_Last_2
+    400116: B_Right_Arm_Last_3
+    400118: B_Right_Arm_Last_end
+    400120: B_Right_Arm_Second_1
+    400122: B_Right_Arm_Second_3
+    400124: B_Right_Arm_Second_end
+    400126: B_Right_Arm_Third_1
+    400128: B_Right_Arm_Third_3
+    400130: B_Right_Arm_Third_end
+    400132: B_Right_Mandible_1
+    400134: B_Right_Mandible_2
+    400136: B_Right_Mandible_end
+    400138: B_Root
+    400140: Point026
+    400142: SM_Arty
+    2100000: 'Material #90'
+    4300000: SM_Arty
+    7400000: LeftPincer
+    9500000: //RootNode
+    13700000: SM_Arty
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: LeftPincer
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
