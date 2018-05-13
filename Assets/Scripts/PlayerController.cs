@@ -62,22 +62,26 @@ public class PlayerController : MonoBehaviour {
             //Check claws
             if (Input.GetAxisRaw("LeftClaw") > 0 && !leftClaw && !leftPressed)
             {
-                StartCoroutine(ClawInput(Claw.Left));
+                ClawInput(Claw.Left);
             }
 
             if (Input.GetAxisRaw("RightClaw") > 0 && !rightClaw && !rightPressed)
             {
-                StartCoroutine(ClawInput(Claw.Right));
+                ClawInput(Claw.Right);
             }
 
-            if (Input.GetAxisRaw("LeftClaw") == 0 && leftPressed)
+            if (Input.GetAxisRaw("LeftClaw") == 0 && leftPressed && !flowInt.isExiting)
             {
                 leftPressed = false;
+                leftClaw = false;
+                anim.SetTrigger("releasesLeft");
             }
 
-            if (Input.GetAxisRaw("RightClaw") == 0 && rightPressed)
+            if (Input.GetAxisRaw("RightClaw") == 0 && rightPressed && !flowInt.isExiting)
             {
                 rightPressed = false;
+                rightClaw = false;
+                anim.SetTrigger("releasesRight");
             }
 
             //Calculate the direction vector based on inputs
@@ -170,13 +174,12 @@ public class PlayerController : MonoBehaviour {
     }
 
 	///////////////////////////////////////Input window for claws
-	IEnumerator ClawInput(Claw side)
+	void ClawInput(Claw side)
 	{
 		if (side == Claw.Left)
         {
 			leftClaw = true;
 			leftPressed = true;
-            //print("gauche");
             anim.SetTrigger("snapsLeft");
         }
 
@@ -184,37 +187,11 @@ public class PlayerController : MonoBehaviour {
         {
 			rightClaw = true;
 			rightPressed = true;
-            //print("droite");
             anim.SetTrigger("snapsRight");
         }
 			
-		bool hasSnipped = sW.OnClaw (side);
 		hrnD.OnClaw (side);
-
-        if (hasSnipped)
-        {
-            if (leftClaw)
-                soundMan.Play(soundMan.pincerAlgae, 1f, 0.95f, 1.05f, -0.1f);
-            else if (rightClaw)
-                soundMan.Play(soundMan.pincerAlgae, 1f, 0.95f, 1.05f, 0.1f);
-        }
-
-        else
-        {
-            if (leftClaw)
-                soundMan.Play(soundMan.pincer, 0.95f, 1f, 1.05f, -0.1f);
-            else if (rightClaw)
-                soundMan.Play(soundMan.pincer, 0.95f, 1f, 1.05f, 0.1f);
-        }
-
-
-		yield return new WaitForSeconds (clawCooldown);
-
-		if (side == Claw.Left) 
-			leftClaw = false;
-		else 
-			rightClaw = false;
-	}
+    }
 
 	//////////////Updates a boolean tracking if the player is touching the floor or not
 	void OnCollisionEnter(Collision other)

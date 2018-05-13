@@ -3825,6 +3825,7 @@ MonoBehaviour:
   - {fileID: 4938871284573272}
   - {fileID: 4879564560849666}
   - {fileID: 4526980783304100}
+  sW: {fileID: 114445862655727020}
 --- !u!114 &114226399126819034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3930,6 +3931,7 @@ MonoBehaviour:
     m_Bits: 256
   inSpeed: 1
   outSpeed: 2
+  isExiting: 0
   flowCam: {fileID: 0}
   walkCam: {fileID: 0}
 --- !u!114 &114866364445516728
