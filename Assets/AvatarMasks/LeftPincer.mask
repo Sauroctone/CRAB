@@ -1,0 +1,154 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: LeftPincer
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: B_Root
+    m_Weight: 1
+  - m_Path: B_Root/Point026
+    m_Weight: 1
+  - m_Path: B_Root/Point026/B_Master
+    m_Weight: 1
+  - m_Path: B_Root/Point026/B_Master/B_Left_Antenna1_1
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Antenna1_1/B_Left_Antenna1_2
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Antenna1_1/B_Left_Antenna1_2/B_Right_Antenna1_end(mirrored)
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Antenna2_1
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Antenna2_1/B_Left_Antenna2_2
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Antenna2_1/B_Left_Antenna2_2/B_Left_Antenna2_3
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Antenna2_1/B_Left_Antenna2_2/B_Left_Antenna2_3/B_Right_Antenna2_end(mirrored)
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Antenna3_1
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Antenna3_1/B_Left_Antenna3_2
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Antenna3_1/B_Left_Antenna3_2/B_Left_Antenna3_3
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Antenna3_1/B_Left_Antenna3_2/B_Left_Antenna3_3/B_Right_Antenna3_end(mirrored)
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Arm_First_1
+    m_Weight: 1
+  - m_Path: B_Root/Point026/B_Master/B_Left_Arm_First_1/B_Left_Arm_First_2
+    m_Weight: 1
+  - m_Path: B_Root/Point026/B_Master/B_Left_Arm_First_1/B_Left_Arm_First_2/B_Left_Arm_First_end
+    m_Weight: 1
+  - m_Path: B_Root/Point026/B_Master/B_Left_Arm_First_1/B_Left_Arm_First_Clamp_1
+    m_Weight: 1
+  - m_Path: B_Root/Point026/B_Master/B_Left_Arm_First_1/B_Left_Arm_First_Clamp_1/B_Left_Arm_First_Clamp_2
+    m_Weight: 1
+  - m_Path: B_Root/Point026/B_Master/B_Left_Arm_First_1/B_Left_Arm_First_Clamp_1/B_Left_Arm_First_Clamp_2/B_Left_Arm_First_Clamp_end
+    m_Weight: 1
+  - m_Path: B_Root/Point026/B_Master/B_Left_Arm_Fourth_1
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Arm_Fourth_1/B_Left_Arm_Fourth_3
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Arm_Fourth_1/B_Left_Arm_Fourth_3/B_Left_Arm_Fourth_end
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Arm_Last_1
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Arm_Last_1/B_Left_Arm_Last_2
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Arm_Last_1/B_Left_Arm_Last_2/B_Left_Arm_Last_3
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Arm_Last_1/B_Left_Arm_Last_2/B_Left_Arm_Last_3/B_Left_Arm_Last_end
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Arm_Second_1
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Arm_Second_1/B_Left_Arm_Second_3
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Arm_Second_1/B_Left_Arm_Second_3/B_Left_Arm_Second_end
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Arm_Third_1
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Arm_Third_1/B_Left_Arm_Third_3
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Arm_Third_1/B_Left_Arm_Third_3/B_Left_Arm_Third_end
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Mandible_1
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Mandible_1/B_Left_Mandible_2
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Left_Mandible_1/B_Left_Mandible_2/B_Left_Mandible_end
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Master_end
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Antenna1_1
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Antenna1_1/B_Right_Antenna1_2
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Antenna1_1/B_Right_Antenna1_2/B_Right_Antenna1_end
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Antenna2_1
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Antenna2_1/B_Right_Antenna2_2
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Antenna2_1/B_Right_Antenna2_2/B_Right_Antenna2_3
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Antenna2_1/B_Right_Antenna2_2/B_Right_Antenna2_3/B_Right_Antenna2_end
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Antenna3_1
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Antenna3_1/B_Right_Antenna3_2
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Antenna3_1/B_Right_Antenna3_2/B_Right_Antenna3_3
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Antenna3_1/B_Right_Antenna3_2/B_Right_Antenna3_3/B_Right_Antenna3_end
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Arm_First_1
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Arm_First_1/B_Right_Arm_First_2
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Arm_First_1/B_Right_Arm_First_2/B_Right_Arm_First_end
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Arm_First_1/B_Right_Arm_First_Clamp_1
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Arm_First_1/B_Right_Arm_First_Clamp_1/B_Right_Arm_First_Clamp_2
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Arm_First_1/B_Right_Arm_First_Clamp_1/B_Right_Arm_First_Clamp_2/B_Right_Arm_First_Clamp_end
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Arm_Fourth_1
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Arm_Fourth_1/B_Right_Arm_Fourth_3
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Arm_Fourth_1/B_Right_Arm_Fourth_3/B_Right_Arm_Fourth_end
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Arm_Last_1
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Arm_Last_1/B_Right_Arm_Last_2
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Arm_Last_1/B_Right_Arm_Last_2/B_Right_Arm_Last_3
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Arm_Last_1/B_Right_Arm_Last_2/B_Right_Arm_Last_3/B_Right_Arm_Last_end
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Arm_Second_1
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Arm_Second_1/B_Right_Arm_Second_3
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Arm_Second_1/B_Right_Arm_Second_3/B_Right_Arm_Second_end
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Arm_Third_1
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Arm_Third_1/B_Right_Arm_Third_3
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Arm_Third_1/B_Right_Arm_Third_3/B_Right_Arm_Third_end
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Mandible_1
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Mandible_1/B_Right_Mandible_2
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/B_Right_Mandible_1/B_Right_Mandible_2/B_Right_Mandible_end
+    m_Weight: 0
+  - m_Path: B_Root/Point026/B_Master/SM_Arty
+    m_Weight: 0

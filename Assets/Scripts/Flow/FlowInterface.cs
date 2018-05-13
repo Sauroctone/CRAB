@@ -37,6 +37,7 @@ public class FlowInterface : MonoBehaviour {
 	public float outSpeed;
 	RaycastHit hit;
 	GameObject theFlowParent;
+    public bool isExiting;
 
 	[Header("Virtual Cameras")]
 	public CinemachineVirtualCamera flowCam;
@@ -199,7 +200,8 @@ public class FlowInterface : MonoBehaviour {
 
 	public IEnumerator ExitFlow() 
 	{
-		PlayerController.controlsAble = false;
+        isExiting = true;
+        PlayerController.controlsAble = false;
 		//Destroy flow parent
 		transform.parent = null;
 		Destroy (theFlowParent);
@@ -242,6 +244,8 @@ public class FlowInterface : MonoBehaviour {
         soundMan.flowSource.Stop();
         soundMan.flowSource.volume = vol;
         impactCloud.Play();
+
+        isExiting = false;
 
         //Switch to not in flow mode
         FlowMode(false);
