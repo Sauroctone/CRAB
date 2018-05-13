@@ -95,12 +95,15 @@ public class FlowInterface : MonoBehaviour {
 	{
 		if (detectedWaypoints.Count > 0) 
 		{
-			float dist = Vector3.Distance (detectedWaypoints [0].transform.position, transform.position);
-			Transform closestWP = detectedWaypoints [0];
+			float dist = Mathf.Infinity;
+			Transform closestWP = null;
+			/*dist = Vector3.Distance (detectedWaypoints [0].transform.position, transform.position);
+			Transform closestWP = detectedWaypoints [0];*/
 
 			//Checks each waypoint, keeps the closest
 			for (int i = 0; i < detectedWaypoints.Count; i++) {
-				if (dist > Vector3.Distance (detectedWaypoints [i].transform.position, transform.position)) {
+				if (dist > Vector3.Distance (detectedWaypoints [i].transform.position, transform.position) && !Physics.Raycast(transform.position, detectedWaypoints [i].transform.position-transform.position, 100f, layer)) 
+				{
 					dist = Vector3.Distance (detectedWaypoints [i].transform.position, transform.position);
 					closestWP = detectedWaypoints [i];
 				}
