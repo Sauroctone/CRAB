@@ -11,19 +11,19 @@ MonoBehaviour:
   m_Script: {fileID: -667331979, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
   m_Name: Arkhip
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: -1846845879
   material: {fileID: 21836537424739262}
-  materialHashCode: 0
+  materialHashCode: -537190110
   fontAssetType: 1
   m_fontInfo:
     Name: Arkhip
     PointSize: 67
-    Scale: 0
+    Scale: 1
     CharacterCount: 96
     LineHeight: 80.375
     Baseline: 0
     Ascender: 57
-    CapHeight: 0
+    CapHeight: 50
     Descender: -23.375
     CenterLine: 0
     SuperscriptOffset: 57
@@ -33,7 +33,7 @@ MonoBehaviour:
     UnderlineThickness: 3.3500001
     strikethrough: 12.227273
     strikethroughThickness: 3.3500001
-    TabWidth: 0
+    TabWidth: 181.875
     Padding: 5
     AtlasWidth: 512
     AtlasHeight: 512
@@ -42,10 +42,10 @@ MonoBehaviour:
   - id: 32
     x: 6
     y: 517
-    width: 0
-    height: 0
+    width: 18.1875
+    height: 80.375
     xOffset: 0
-    yOffset: 0
+    yOffset: 57
     xAdvance: 18.1875
     scale: 1
   - id: 33
@@ -1026,9 +1026,9 @@ Material:
     - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 1
-    - _ScaleRatioB: 1
-    - _ScaleRatioC: 1
+    - _ScaleRatioA: 0.8333333
+    - _ScaleRatioB: 0.6770833
+    - _ScaleRatioC: 0.6770833
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
