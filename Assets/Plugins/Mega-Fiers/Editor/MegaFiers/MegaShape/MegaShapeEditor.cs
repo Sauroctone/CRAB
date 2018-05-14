@@ -1351,7 +1351,7 @@ public class MegaShapeEditor : Editor
 #if UNITY_5_1 || UNITY_5_2 || UNITY_5_3 || UNITY_5_4 || UNITY_5_5 || UNITY_5_6 || UNITY_2017
 	[DrawGizmo(GizmoType.NotInSelectionHierarchy | GizmoType.Pickable | GizmoType.InSelectionHierarchy)]
 #else
-	[DrawGizmo(GizmoType.NotSelected | GizmoType.Pickable | GizmoType.SelectedOrChild)]
+	[DrawGizmo(GizmoType.NotInSelectionHierarchy | GizmoType.Pickable | GizmoType.InSelectionHierarchy)]
 #endif
 	static void RenderGizmo(MegaShape shape, GizmoType gizmoType)
 	{
@@ -1815,7 +1815,7 @@ public class MegaShapeEditor : Editor
 #if UNITY_5_0 || UNITY_5_1 || UNITY_5_2 || UNITY_5 || UNITY_2017
 		clonemesh.uv2 = mesh.uv2;
 #else
-		clonemesh.uv1 = mesh.uv1;
+		clonemesh.uv2 = mesh.uv2;
 		clonemesh.uv2 = mesh.uv2;
 #endif
 		clonemesh.uv = mesh.uv;
