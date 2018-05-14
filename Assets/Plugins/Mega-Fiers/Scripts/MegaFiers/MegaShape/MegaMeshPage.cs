@@ -374,7 +374,7 @@ public class MegaMeshPage : MonoBehaviour
 #if UNITY_5_5 || UNITY_5_6 || UNITY_2017
 #else
 		if ( optimize )
-			mesh.Optimize();
+			;
 #endif
 
 		mesh.RecalculateBounds();
@@ -640,7 +640,7 @@ public class MegaMeshPage : MonoBehaviour
 #if UNITY_5_5 || UNITY_5_6 || UNITY_2017
 #else
 		if ( optimize )
-			mesh.Optimize();
+			;
 #endif
 
 		mesh.RecalculateBounds();
