@@ -254,7 +254,7 @@ public class FlowInterface : MonoBehaviour {
 		currentFlow = null;
 	
 		//Reset exit point
-		detectedExitPoint.GetComponent<Renderer>().material.SetFloat("_OutlineSwitch", 0);
+		//detectedExitPoint.GetComponent<Renderer>().material.SetFloat("_OutlineSwitch", 0);
 		detectedExitPoint = null;
 	}
 

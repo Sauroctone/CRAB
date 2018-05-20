@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcd500a8a3446b9438347b0764fb2c38, type: 3}
   m_Name: Stats_Enemy
   m_EditorClassIdentifier: 
-  attackRadius: 4
+  attackRadius: 2
   attackSpeed: 3
-  attackCooldown: 3
+  attackCooldown: 2
   attackTime: 1
   offset: 1
   attackCurve:
@@ -41,12 +41,13 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   radius: 3
-  lookRange: 3
+  lookRange: 5
   patrolRotationSpeed: 1
   patrolAngle: 20
   patrolSpeed: 0.01
-  stopDistance: 2
+  stopDistance: 1.5
   searchTime: 6
   searchRotationSpeed: 2
   searchAngle: 45
   chaseSpeed: 0.02
+  pathUpdateFrequency: 0.5

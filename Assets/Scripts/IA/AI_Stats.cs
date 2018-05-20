@@ -27,5 +27,6 @@ public class AI_Stats : ScriptableObject {
 
 	[Header("Chase")]
 	public float chaseSpeed;
+	public float pathUpdateFrequency;
 
 }

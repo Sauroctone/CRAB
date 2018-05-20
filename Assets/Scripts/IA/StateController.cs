@@ -16,9 +16,12 @@ public class StateController : MonoBehaviour {
 	[HideInInspector] public int nextWayPoint;
 	[HideInInspector] public Transform chaseTarget;
 	[HideInInspector] public Vector3 attackTargetPosition;
+	[HideInInspector] public Vector3 originRotation;
+	[HideInInspector] public Vector3 originLocalRotation;
 	[HideInInspector] public Vector3 lastSeenPosition;
 	[HideInInspector] public float stateTimeElapsed;
-	/*[HideInInspector] */public List<Collider> seenObjects;
+	[HideInInspector] public float pathTimer;
+	[HideInInspector] public List<Collider> seenObjects;
 
 	public Coroutine currentMovement;
 	public bool aiActive;
@@ -30,6 +33,7 @@ public class StateController : MonoBehaviour {
 	public void SetupIA()
 	{
 		follower = GetComponent<PathFollower> ();
+		originLocalRotation = eyeRotator.localRotation.eulerAngles;
 		aiActive = true;
 	}
 
@@ -38,6 +42,10 @@ public class StateController : MonoBehaviour {
 		if (!aiActive)
 			return;
 		currentState.UpdateState (this);
+		if (pathTimer > 0) 
+		{
+			pathTimer -= Time.deltaTime;
+		}
 	}
 
 	public void TransitionToState(AI_State nextState)
