@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour {
 	public GameObject exitFlow;
 	public PlayableDirector pDir;
 	public TimelineAsset callTimeline;
+	public PresentationManager director;
 
 	public IEnumerator HornCall()
 	{
@@ -36,6 +37,8 @@ public class LevelManager : MonoBehaviour {
 	private IEnumerator EndLevel()
 	{
 		yield return null;
+		director.StartCoroutine (director.PlayTimeline ());
+		director.PlayModeOFF ();
 		print ("The end");
 
 	}

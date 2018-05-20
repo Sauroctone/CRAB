@@ -19,6 +19,11 @@ public class PF_Pathfinding : MonoBehaviour {
 		Node startNode = grid.GetNodeFromWorldPoint (startPos); 
 		Node targetNode = grid.GetNodeFromWorldPoint (targetPos); 
 
+		if (!targetNode.walkable) 
+		{
+			targetNode = GetClosestValidNode (targetNode, targetPos);
+		}
+
 		if (startNode.walkable && targetNode.walkable) {
 			Heap<Node> openSet = new Heap<Node> (grid.MaxSize); //Nodes to be evaluated (check if it is the closest to target)
 			HashSet<Node> closedSet = new HashSet<Node> ();//Nodes already evaluated (is used to add his neighbours to the openSet)
@@ -72,6 +77,7 @@ public class PF_Pathfinding : MonoBehaviour {
 				}
 			}
 		}
+
 		if (pathSuccess) {
 			waypoints = RetracePath (startNode, targetNode);
 			return RetracePath (startNode, targetNode);
@@ -125,6 +131,25 @@ public class PF_Pathfinding : MonoBehaviour {
 		Array.Sort (diffs);
 
 		return 3 * diffs [0] + 2 * (diffs [1] - diffs [0]) + 1 * (diffs [2] - diffs [1] - diffs [0]);
+	}
+
+	Node GetClosestValidNode(Node invalidNode, Vector3 targetPos)
+	{
+		Node newNode = invalidNode;
+		List<Node> neighbours = grid.GetNeighbours (invalidNode);
+		float distance = Mathf.Infinity;
+
+		for (int i = 0; i < neighbours.Count; i++) 
+		{
+			float newDist = (neighbours [i].worldPosition - targetPos).magnitude;
+			if (neighbours [i].walkable && newDist < distance) 
+			{
+				newNode = neighbours [i];
+				distance = newDist;
+			}
+		}
+
+		return newNode;
 	}
 
 
