@@ -16,7 +16,7 @@ public class StateController : MonoBehaviour {
 	[HideInInspector] public int nextWayPoint;
 	[HideInInspector] public Transform chaseTarget;
 	[HideInInspector] public Vector3 attackTargetPosition;
-	[HideInInspector] public Vector3 originRotation;
+	[HideInInspector] public Quaternion originRotation;
 	[HideInInspector] public Vector3 originLocalRotation;
 	[HideInInspector] public Vector3 lastSeenPosition;
 	[HideInInspector] public float stateTimeElapsed;
@@ -33,7 +33,7 @@ public class StateController : MonoBehaviour {
 	public void SetupIA()
 	{
 		follower = GetComponent<PathFollower> ();
-		originLocalRotation = eyeRotator.localRotation.eulerAngles;
+		originRotation = eyeRotator.rotation;
 		aiActive = true;
 	}
 
