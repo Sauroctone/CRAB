@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour {
 	public GameObject exitFlow;
 	public PlayableDirector pDir;
 	public TimelineAsset callTimeline;
-	public PresentationManager director;
+	public PresentationManagerMerge director;
 
 	public IEnumerator HornCall()
 	{
