@@ -17,11 +17,16 @@ Material:
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - _Texture:
+        m_Texture: {fileID: 2800000, guid: 889a11b856e8ead40a361e48dc66d60a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _OutlineSwitch: 0
     - _node_6861: 0.1
     m_Colors:
     - _Color: {r: 0.85294116, g: 0.7411765, b: 0.37629756, a: 1}
     - _Color_copy: {r: 0.8455882, g: 0.5769896, b: 0.17409171, a: 1}
+    - _Outlinecolor: {r: 1, g: 0.743, b: 0, a: 1}
     - _node_1913: {r: 0.8455882, g: 0.7714921, b: 0.1740917, a: 1}

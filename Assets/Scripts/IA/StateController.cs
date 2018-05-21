@@ -11,6 +11,7 @@ public class StateController : MonoBehaviour {
 	public AI_Stats stats;
 	public List<Transform> wayPointList;
 	public LevelManager levelManager;
+	public Animator animator;
 
 	[HideInInspector] public PathFollower follower;
 	[HideInInspector] public int nextWayPoint;

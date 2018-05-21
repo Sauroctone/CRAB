@@ -82,6 +82,7 @@ public class PathFollower : MonoBehaviour {
 		Vector3 direction = (target - origin).normalized; 
 		target -= direction * controller.stats.offset;
 
+		controller.animator.SetTrigger ("Attack");
 		//Dash in
 		for (float i = 0; i < 1; i+= Time.deltaTime*controller.stats.attackSpeed)
 		{
