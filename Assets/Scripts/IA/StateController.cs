@@ -17,7 +17,6 @@ public class StateController : MonoBehaviour {
 	[HideInInspector] public Transform chaseTarget;
 	[HideInInspector] public Vector3 attackTargetPosition;
 	[HideInInspector] public Quaternion originRotation;
-	[HideInInspector] public Vector3 originLocalRotation;
 	[HideInInspector] public Vector3 lastSeenPosition;
 	[HideInInspector] public float stateTimeElapsed;
 	[HideInInspector] public float pathTimer;
@@ -28,6 +27,7 @@ public class StateController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		SetupIA ();
+		//aiActive = false;
 	}
 
 	public void SetupIA()
