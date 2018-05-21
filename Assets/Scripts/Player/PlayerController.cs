@@ -39,6 +39,13 @@ public class PlayerController : MonoBehaviour {
 	Coroutine leftPincerCor;
     Coroutine rightPincerCor;
 
+	[Header("Claws Buffer")]
+	Coroutine leftBufferCo;
+	Coroutine rightBufferCo;
+	public static bool leftBuffering;
+	public static bool rightBuffering;
+	public float bufferDuration;
+
     [Header("References")]
 
     public Rigidbody rb;
@@ -181,6 +188,14 @@ public class PlayerController : MonoBehaviour {
 			leftClaw = true;
 			leftPressed = true;
             anim.SetTrigger("snapsLeft");
+
+			if (leftBufferCo == null)
+				leftBufferCo = StartCoroutine (LeftBuffer ());
+			else 
+			{
+				StopCoroutine (leftBufferCo);
+				leftBufferCo = StartCoroutine (LeftBuffer ());
+			}
         }
 
         else
@@ -188,10 +203,35 @@ public class PlayerController : MonoBehaviour {
 			rightClaw = true;
 			rightPressed = true;
             anim.SetTrigger("snapsRight");
+
+			if (rightBufferCo == null)
+				rightBufferCo = StartCoroutine (RightBuffer ());
+			else 
+			{
+				StopCoroutine (rightBufferCo);
+				rightBufferCo = StartCoroutine (RightBuffer ());
+			}
         }
 			
 		hrnD.OnClaw (side);
     }
+
+	///////////////Buffers
+	IEnumerator LeftBuffer()
+	{
+		leftBuffering = true;
+		yield return new WaitForSeconds (bufferDuration);
+		leftBuffering = false;
+		leftBufferCo = null;
+	}
+	IEnumerator RightBuffer()
+	{
+		rightBuffering = true;
+		yield return new WaitForSeconds (bufferDuration);
+		rightBuffering = false;
+		rightBufferCo = null;
+	}
+
 
 	//////////////Updates a boolean tracking if the player is touching the floor or not
 	void OnCollisionEnter(Collision other)
