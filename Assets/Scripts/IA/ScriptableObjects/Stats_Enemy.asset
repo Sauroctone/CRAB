@@ -41,10 +41,10 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   radius: 3
-  lookRange: 5
+  lookRange: 6
   patrolRotationSpeed: 1
   patrolAngle: 20
-  patrolSpeed: 0.01
+  patrolSpeed: 0.035
   stopDistance: 1.5
   searchTime: 6
   searchRotationSpeed: 2
