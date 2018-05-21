@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
-public class PresentationManager : MonoBehaviour {
+public class PresentationManagerMerge : MonoBehaviour {
 	int timelineID;
 
 	public TimelineAsset[] timelines;

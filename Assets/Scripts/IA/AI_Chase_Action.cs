@@ -18,7 +18,8 @@ public class AI_Chase_Action : AI_Action
 			controller.pathTimer = controller.stats.pathUpdateFrequency;
 		}
 		//controller.eyeRotator.rotation = Quaternion.Slerp(controller.eyeRotator.localRotation, Quaternion.Euler(controller.originRotation), 0.001f);
-		controller.eyeRotator.localRotation = Quaternion.Slerp(controller.eyeRotator.localRotation, Quaternion.Euler (0, 0, 0), 0.001f);
+		Quaternion aiRotation =  controller.transform.rotation*controller.originRotation;
+		controller.eyeRotator.rotation = Quaternion.Slerp(controller.eyeRotator.localRotation, Quaternion.Euler (0, 0, 0)*aiRotation, 0.001f);
 
 		controller.CheckIfCountDownElapsed (Mathf.Infinity);
 	}
