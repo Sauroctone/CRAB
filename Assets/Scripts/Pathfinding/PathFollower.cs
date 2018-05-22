@@ -107,7 +107,7 @@ public class PathFollower : MonoBehaviour {
 		//Dash out
 		origin -= direction * 0.5f;
 
-		for (float i = 1; i > 0; i-= Time.deltaTime*controller.stats.attackSpeed)
+		for (float i = 1; i > 0; i-= Time.deltaTime*controller.stats.attackSpeed/2)
 		{
 			transform.position = Vector3.Lerp(origin, target, controller.stats.attackCurve.Evaluate(i));
 

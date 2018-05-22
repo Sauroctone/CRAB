@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Name: Stats_Enemy
   m_EditorClassIdentifier: 
   attackRadius: 2
-  attackSpeed: 3
-  attackCooldown: 2
-  attackTime: 1
+  attackSpeed: 2
+  attackCooldown: 1
+  attackTime: 2
   offset: 1
   attackCurve:
     serializedVersion: 2

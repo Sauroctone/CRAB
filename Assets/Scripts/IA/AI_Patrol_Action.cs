@@ -22,5 +22,11 @@ public class AI_Patrol_Action : AI_Action
 			controller.nextWayPoint = (controller.nextWayPoint + 1) % controller.wayPointList.Count;
 			controller.follower.InitMovement (controller.transform.position, controller.wayPointList [controller.nextWayPoint].position, controller.stats.patrolSpeed);
 		}
+
+		if (!controller.animator.GetBool ("Swimming")) {
+			controller.animator.SetBool ("Swimming", true);
+			controller.animator.SetBool ("Immobile", false);
+			controller.animator.SetBool ("Chasing", false);
+		}
 	}
 }

@@ -19,5 +19,11 @@ public class AI_Search_Decision : AI_Decision {
 		Quaternion aiRotation = controller.transform.rotation*controller.originRotation;
 		controller.eyeRotator.rotation = Quaternion.Slerp(controller.eyeRotator.rotation, Quaternion.Euler (0, Mathf.Sin (controller.stateTimeElapsed*controller.stats.searchRotationSpeed) * controller.stats.searchAngle, 0) * aiRotation, 0.5f);
 		return controller.CheckIfCountDownElapsed (controller.stats.searchTime);
+
+		if (!controller.animator.GetBool ("Immobile")) {
+				controller.animator.SetBool ("Swimming", false);
+				controller.animator.SetBool ("Immobile", true);
+				controller.animator.SetBool ("Chasing", false);
+		}
 	}
 }

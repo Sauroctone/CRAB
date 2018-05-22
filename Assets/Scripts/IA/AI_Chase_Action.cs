@@ -22,5 +22,11 @@ public class AI_Chase_Action : AI_Action
 		controller.eyeRotator.rotation = Quaternion.Slerp(controller.eyeRotator.rotation, Quaternion.Euler (0, 0, 0)*aiRotation, 0.001f);
 
 		controller.CheckIfCountDownElapsed (Mathf.Infinity);
+
+		if (!controller.animator.GetBool ("Chasing")) {
+			controller.animator.SetBool ("Swimming", false);
+			controller.animator.SetBool ("Immobile", false);
+			controller.animator.SetBool ("Chasing", true);
+		}
 	}
 }
