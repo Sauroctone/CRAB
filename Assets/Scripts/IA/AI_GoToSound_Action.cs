@@ -14,6 +14,11 @@ public class AI_GoToSound_Action : AI_Action
 	{
 		if (controller.follower.currentMovement == null)
 			controller.follower.InitMovement (controller.transform.position, controller.levelManager.horn.position, controller.stats.chaseSpeed);
-		
+
+		if (!controller.animator.GetBool ("Chasing")) {
+			controller.animator.SetBool ("Swimming", false);
+			controller.animator.SetBool ("Immobile", false);
+			controller.animator.SetBool ("Chasing", true);
+		}
 	}
 }

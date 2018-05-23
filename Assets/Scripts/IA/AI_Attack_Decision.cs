@@ -20,6 +20,7 @@ public class AI_Attack_Decision : AI_Decision {
 		bool closeEnough = false;
 		if ((controller.mouth.position - controller.chaseTarget.position).magnitude <= controller.stats.attackRadius) 
 		{
+			Debug.Log ((controller.mouth.position - controller.chaseTarget.position).magnitude);
 			closeEnough = true;
 		}
 

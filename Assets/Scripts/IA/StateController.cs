@@ -11,6 +11,8 @@ public class StateController : MonoBehaviour {
 	public AI_Stats stats;
 	public List<Transform> wayPointList;
 	public LevelManager levelManager;
+	public Animator animator;
+	public SoundManager_Enemy sM;
 
 	[HideInInspector] public PathFollower follower;
 	[HideInInspector] public int nextWayPoint;
@@ -46,6 +48,7 @@ public class StateController : MonoBehaviour {
 		{
 			pathTimer -= Time.deltaTime;
 		}
+			
 	}
 
 	public void TransitionToState(AI_State nextState)
