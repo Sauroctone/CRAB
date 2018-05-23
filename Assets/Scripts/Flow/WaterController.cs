@@ -38,16 +38,16 @@ public class WaterController : MonoBehaviour {
 			StartCoroutine (flowInterface.JoinTheFlow ());
 		}
 
-		if ((PlayerController.leftClaw || PlayerController.rightClaw) && flowInterface.GetExitPoint() != null)
+		if ((PlayerController.leftBuffering || PlayerController.rightBuffering) && flowInterface.GetExitPoint() != null)
 		{
 			float dirNum = AngleDir (transform.forward, flowInterface.GetExitPoint ().position - transform.position, transform.up);
-			if (dirNum  < 0 && PlayerController.leftClaw && !exiting) 
+			if (dirNum  < 0 && PlayerController.leftBuffering && !exiting) 
 			{
 				StartCoroutine (flowInterface.ExitFlow ());
 				exiting = true;
                 soundMan.Play(soundMan.pincerRock, -0.1f);
 			} 
-			else if (dirNum > 0 && PlayerController.rightClaw && !exiting)
+			else if (dirNum > 0 && PlayerController.rightBuffering && !exiting)
 			{
                 soundMan.Play(soundMan.pincerRock, .7f, 0.1f);
                 StartCoroutine (flowInterface.ExitFlow ());

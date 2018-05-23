@@ -915,7 +915,7 @@ public class MegaHoseNew : MonoBehaviour
 #if UNITY_5_5 || UNITY_5_6 || UNITY_2017
 #else
 		if ( optimize )
-			mesh.Optimize();
+			;
 #endif
 
 		if ( calctangents )
